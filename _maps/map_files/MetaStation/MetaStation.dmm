@@ -2730,29 +2730,12 @@
 /turf/open/floor/iron,
 /area/station/engineering/break_room)
 "aYl" = (
-/obj/structure/table,
-/obj/item/assembly/igniter{
-	pixel_x = -5;
-	pixel_y = 3
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 5;
-	pixel_y = -4
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 2;
-	pixel_y = 6
-	},
-/obj/item/assembly/igniter{
-	pixel_x = 2;
-	pixel_y = -1
-	},
 /obj/machinery/camera/directional/east{
 	c_tag = "Xenobiology Lab - Test Chamber";
 	network = list("ss13","rd","xeno")
 	},
 /obj/machinery/light/cold/directional/east,
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "aYw" = (
 /obj/machinery/door/airlock/external{
@@ -10216,7 +10199,7 @@
 /obj/machinery/sparker/directional/north{
 	id = "Xenobio"
 	},
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "dLn" = (
 /obj/structure/rack,
@@ -11685,6 +11668,7 @@
 	dir = 8
 	},
 /area/station/service/chapel)
+<<<<<<< HEAD
 "ehL" = (
 /obj/effect/turf_decal/trimline/purple/filled/warning{
 	dir = 1
@@ -11697,6 +11681,8 @@
 	},
 /turf/open/floor/iron,
 /area/station/science/explab)
+=======
+>>>>>>> 059de8c2a88 (Adds Xenobio (BZ) reinforced floor turfs to Xenobiology Secure Pens (#84452))
 "ehX" = (
 /turf/open/floor/iron/dark,
 /area/station/medical/storage)
@@ -18162,7 +18148,7 @@
 /area/station/engineering/atmos)
 "gyK" = (
 /obj/machinery/atmospherics/pipe/smart/manifold4w/general/visible,
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "gyO" = (
 /obj/structure/cable,
@@ -28035,8 +28021,7 @@
 /obj/machinery/atmospherics/components/unary/outlet_injector/on{
 	dir = 8
 	},
-/obj/effect/spawner/random/engineering/tracking_beacon,
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "jQM" = (
 /obj/machinery/door/firedoor,
@@ -28757,12 +28742,7 @@
 /turf/open/floor/iron/dark,
 /area/station/command/bridge)
 "kcu" = (
-/obj/structure/table,
-/obj/item/stack/sheet/iron{
-	amount = 10
-	},
-/obj/item/electropack,
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "kcF" = (
 /obj/structure/disposalpipe/segment{
@@ -38842,7 +38822,7 @@
 /area/station/medical/treatment_center)
 "nJr" = (
 /obj/effect/spawner/random/medical/two_percent_xeno_egg_spawner,
-/turf/open/floor/engine,
+/turf/open/floor/engine/xenobio,
 /area/station/science/xenobiology)
 "nJu" = (
 /obj/structure/closet/secure_closet/security/sec,
@@ -41462,6 +41442,17 @@
 /obj/effect/mapping_helpers/airlock/access/any/medical/maintenance,
 /turf/open/floor/plating,
 /area/station/medical/medbay/central)
+<<<<<<< HEAD
+=======
+"oGj" = (
+/obj/machinery/atmospherics/components/unary/portables_connector/visible,
+/obj/effect/turf_decal/box,
+/obj/machinery/portable_atmospherics/canister,
+/obj/item/radio/intercom/directional/north,
+/obj/structure/sign/warning/gas_mask/directional/east,
+/turf/open/floor/iron,
+/area/station/science/xenobiology)
+>>>>>>> 059de8c2a88 (Adds Xenobio (BZ) reinforced floor turfs to Xenobiology Secure Pens (#84452))
 "oGn" = (
 /obj/machinery/door/airlock/maintenance{
 	name = "Fuel Closet"
@@ -68760,6 +68751,7 @@
 /turf/open/floor/plating,
 /area/station/maintenance/port/fore)
 "ycv" = (
+/obj/effect/spawner/random/engineering/tracking_beacon,
 /turf/open/floor/iron/white,
 /area/station/science/xenobiology)
 "ycw" = (
@@ -117516,7 +117508,7 @@ rDf
 eUe
 eSb
 nnc
-hdy
+nnc
 nnc
 rvK
 nnc
@@ -117773,11 +117765,11 @@ hbK
 mgS
 hbK
 jlU
-mtu
-mtu
+kcu
+kcu
 gyK
-mtu
-mtu
+kcu
+kcu
 jlU
 hbK
 mTg
@@ -118031,10 +118023,10 @@ fGy
 wyo
 jlU
 dLm
-mtu
+kcu
 gyK
-mtu
-mtu
+kcu
+kcu
 jlU
 qgn
 mCV
@@ -118287,11 +118279,11 @@ pWT
 rDf
 uLa
 jlU
-mtu
-mtu
+kcu
+kcu
 jQz
 nJr
-mtu
+kcu
 jlU
 lUS
 pHt
@@ -118544,11 +118536,11 @@ hbK
 wrc
 wrc
 jlU
-mtu
-mtu
-mtu
-mtu
-mtu
+kcu
+kcu
+kcu
+kcu
+kcu
 jlU
 wrc
 wrc
@@ -118802,7 +118794,11 @@ aaa
 lMJ
 jlU
 jlU
+<<<<<<< HEAD
 hcA
+=======
+kcu
+>>>>>>> 059de8c2a88 (Adds Xenobio (BZ) reinforced floor turfs to Xenobiology Secure Pens (#84452))
 aYl
 kcu
 jlU
