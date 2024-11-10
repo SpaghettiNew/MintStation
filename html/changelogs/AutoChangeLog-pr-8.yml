@@ -1,0 +1,5 @@
+author: "FeenieRU"
+delete-after: True
+changes:
+  - rscadd: "CentCom crew"
+  - rscadd: "3d airlocks and walls"
