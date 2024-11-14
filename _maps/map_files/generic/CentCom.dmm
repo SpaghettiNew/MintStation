@@ -5326,6 +5326,9 @@
 /obj/effect/turf_decal/siding/wood/corner{
 	dir = 4
 	},
+/obj/machinery/light_switch/directional/south{
+	id_tag = "administrative"
+	},
 /turf/open/floor/wood/tile,
 /area/centcom/central_command_areas/admin)
 "xc" = (
@@ -7143,7 +7146,8 @@
 	light_color = "#3f48cc";
 	color = "#3f48cc";
 	pixel_y = 0;
-	brightness = 5
+	brightness = 5;
+	id_tag = "administrative"
 	},
 /obj/effect/turf_decal/trimline/dark_blue{
 	alpha = 255;
@@ -10146,7 +10150,6 @@
 /area/centcom/central_command_areas/evacuation)
 "Ui" = (
 /obj/structure/table/wood,
-/obj/machinery/computer/security/wooden_tv,
 /obj/structure/secure_safe{
 	pixel_x = 32;
 	pixel_y = 24
