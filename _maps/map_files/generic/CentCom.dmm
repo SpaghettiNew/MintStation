@@ -778,6 +778,7 @@
 	dir = 9
 	},
 /obj/item/radio/intercom/command/directional/north,
+/obj/effect/landmark/start/centcom_officer,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin)
 "dl" = (
@@ -6147,6 +6148,7 @@
 /obj/effect/turf_decal/siding/dark_blue/end{
 	dir = 8
 	},
+/obj/effect/landmark/start/centcom_officer,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin)
 "AG" = (
@@ -7031,6 +7033,7 @@
 	color = "#596479";
 	dir = 1
 	},
+/obj/effect/landmark/start/centcom_admiral,
 /turf/open/floor/glass/reinforced,
 /area/centcom/central_command_areas/admin)
 "EK" = (
@@ -8638,6 +8641,7 @@
 /obj/effect/turf_decal/siding/dark_blue/end{
 	dir = 4
 	},
+/obj/effect/landmark/start/centcom_officer,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin)
 "NO" = (
@@ -11340,6 +11344,7 @@
 	dir = 5
 	},
 /obj/item/radio/intercom/command/directional/north,
+/obj/effect/landmark/start/centcom_officer,
 /turf/open/floor/carpet/executive,
 /area/centcom/central_command_areas/admin)
 "ZM" = (
