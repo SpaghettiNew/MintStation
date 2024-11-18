@@ -12,17 +12,6 @@
 	req_access = list(ACCESS_CENT_GENERAL)
 	cargo_account = ACCOUNT_NT
 	contraband = FALSE
-	var/allowed_categories = list(NAKAMURA_ENGINEERING_MODSUITS_NAME, 	//used for company items import supports companies and specific categories
-	BLACKSTEEL_FOUNDATION_NAME,
-	NRI_SURPLUS_COMPANY_NAME,
-	DEFOREST_MEDICAL_NAME,
-	DONK_CO_NAME,
-	KAHRAMAN_INDUSTRIES_NAME,
-	FRONTIER_EQUIPMENT_NAME,
-	SOL_DEFENSE_DEFENSE_NAME,
-	MICROSTAR_ENERGY_NAME,
-	VITEZSTVI_AMMO_NAME
-	)
 	interface_type = "CentComCargoExpress"
 
 	pod_type = /obj/structure/closet/supplypod/centcompod
@@ -32,25 +21,31 @@
 		to_chat(user, span_notice("You try to change the routing protocols, however the machine displays a runtime error and reboots."))
 	return FALSE//never let this console be emagged
 
-/obj/machinery/computer/cargo/express/centcom/packin_up()//we're the dauntless, add the company imports stuff to our express console
-	. = ..()
+/obj/machinery/computer/cargo/express/centcom/packin_up(forced = FALSE)
+	meme_pack_data = list()
+	if (!forced && !SSshuttle.initialized)
+		SSshuttle.express_consoles += src
+		return
+	for(var/pack in SSshuttle.supply_packs)
+		var/datum/supply_pack/P = SSshuttle.supply_packs[pack]
+		if (!P.iscentcom)
+			continue
+		if(!meme_pack_data[P.group])
+			meme_pack_data[P.group] = list(
+				"name" = P.group,
+				"packs" = list()
+			)
+		if((P.special) || (P.hidden && !P.iscentcom))
+			continue
+		if(P.contraband && !contraband)
+			continue
+		meme_pack_data[P.group]["packs"] += list(list(
+			"name" = P.name,
+			"cost" = P.get_cost() * get_discount(),
+			"id" = pack,
+			"desc" = P.desc || P.name
+		))
 
-	if(!meme_pack_data["Company Imports"])
-		meme_pack_data["Company Imports"] = list(
-			"name" = "Company Imports",
-			"packs" = list()
-		)
-
-	for(var/armament_category as anything in SSarmaments.entries)//babe! it's 4pm, time for the company importing logic
-		for(var/subcategory as anything in SSarmaments.entries[armament_category][CATEGORY_ENTRY])
-			if(armament_category in allowed_categories)
-				for(var/datum/armament_entry/armament_entry as anything in SSarmaments.entries[armament_category][CATEGORY_ENTRY][subcategory])
-					meme_pack_data["Company Imports"]["packs"] += list(list(
-						"name" = "[armament_category]: [armament_entry.name]",
-						"cost" = armament_entry.cost,
-						"id" = REF(armament_entry),
-						"description" = armament_entry.description,
-					))
 
 /obj/machinery/computer/cargo/express/centcom/ui_act(action, params, datum/tgui/ui)
 	if(action == "add")//if we're generating a supply order
