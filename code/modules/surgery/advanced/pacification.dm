@@ -38,9 +38,20 @@
 		/obj/item/pen = 15,
 	)
 	time = 40
-	preop_sound = 'sound/surgery/hemostat1.ogg'
-	success_sound = 'sound/surgery/hemostat1.ogg'
-	failure_sound = 'sound/surgery/organ2.ogg'
+	preop_sound = 'sound/items/handling/surgery/hemostat1.ogg'
+	success_sound = 'sound/items/handling/surgery/hemostat1.ogg'
+	failure_sound = 'sound/items/handling/surgery/organ2.ogg'
+
+/datum/surgery_step/pacify/mechanic
+	name = "delete aggression programming (multitool)"
+	implements = list(
+		TOOL_MULTITOOL = 100,
+		TOOL_HEMOSTAT = 35,
+		TOOL_SCREWDRIVER = 35,
+		/obj/item/pen = 15,
+	)
+	preop_sound = 'sound/items/taperecorder/tape_flip.ogg'
+	success_sound = 'sound/items/taperecorder/taperecorder_close.ogg'
 
 /datum/surgery_step/pacify/mechanic
 	name = "delete aggression programming (multitool)"
