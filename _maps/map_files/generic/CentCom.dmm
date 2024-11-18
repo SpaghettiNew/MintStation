@@ -9890,8 +9890,7 @@
 	},
 /obj/structure/flora/bush/large{
 	pixel_x = -16;
-	pixel_y = -3;
-	layer = 5.02
+	pixel_y = -3
 	},
 /obj/structure/flora/bush/jungle/a{
 	pixel_x = -3;
