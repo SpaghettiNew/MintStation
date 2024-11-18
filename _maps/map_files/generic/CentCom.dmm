@@ -965,7 +965,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 4;
 	name = "siding"
@@ -974,7 +973,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 8;
 	name = "siding"
@@ -3443,7 +3441,6 @@
 	icon_state = "siding_wood_end";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 1;
 	name = "siding"
@@ -4334,7 +4331,6 @@
 	icon_state = "random_fly_1";
 	pixel_y = 1;
 	icon = 'icons/obj/medical/organs/organs.dmi';
-	layer = 2.91;
 	color = "#ffffff";
 	dir = 4;
 	name = "antennae";
@@ -4667,7 +4663,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 4;
 	name = "antennae"
@@ -4676,7 +4671,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 8;
 	name = "siding"
@@ -7321,7 +7315,6 @@
 /obj/structure/decorative{
 	pixel_y = -8;
 	icon = 'icons/obj/devices/voice.dmi';
-	layer = 2.91;
 	color = "#00000";
 	dir = 4;
 	name = "antennae";
@@ -7839,7 +7832,6 @@
 	icon_state = "siding_wood_end";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 2;
 	name = "siding"
