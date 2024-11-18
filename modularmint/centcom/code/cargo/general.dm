@@ -9,16 +9,16 @@
 	crate_type = /obj/structure/closet/crate/centcom
 
 /datum/supply_pack/centcom/general
-	group = "General"
+	group = "Miscellaneous Supplies"
 
 /datum/supply_pack/centcom/weapon
-	group = "Weaponry"
+	group = "Security"
 
 /datum/supply_pack/centcom/armor
 	group = "Armory"
 
 /datum/supply_pack/centcom/limited
-	group = "Limited"
+	group = "Imports"
 
 // CentCom General
 
