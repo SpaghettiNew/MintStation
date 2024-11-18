@@ -76,6 +76,30 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/prisoner/after_round_start()
 	return
 
+// MINT EDIT: START
+/obj/effect/landmark/start/centcom_admiral
+	name = "CentCom Admiral"
+	icon_state = "admiral"
+	icon = 'modularmint/centcom/icons/landmarks.dmi'
+
+	jobspawn_override = TRUE
+	delete_after_roundstart = FALSE
+
+/obj/effect/landmark/start/centcom_admiral/after_round_start()
+	return
+
+/obj/effect/landmark/start/centcom_officer
+	name = "CentCom Officer"
+	icon_state = "officer"
+	icon = 'modularmint/centcom/icons/landmarks.dmi'
+
+	jobspawn_override = TRUE
+	delete_after_roundstart = FALSE
+
+/obj/effect/landmark/start/centcom_officer/after_round_start()
+	return
+// MINT EDIT: END
+
 /obj/effect/landmark/start/janitor
 	name = "Janitor"
 	icon_state = "Janitor"
@@ -316,6 +340,11 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/start/new_player)
 	..()
 	GLOB.newplayer_start += loc
 	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/start/pun_pun
+	name = JOB_PUN_PUN
+	icon = 'icons/mob/human/human.dmi'
+	icon_state = "monkey"
 
 /obj/effect/landmark/latejoin
 	name = "JoinLate"

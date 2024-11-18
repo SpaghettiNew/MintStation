@@ -78,6 +78,7 @@
 @include meta.load-css('./interfaces/Trophycase.scss');
 @include meta.load-css('./interfaces/Uplink.scss');
 @include meta.load-css('./interfaces/UtilityModulesPane.scss');
+@include meta.load-css('./interfaces/DetectiveBoard.scss');
 // NOVA EDIT ADDITION START
 @include meta.load-css('./interfaces/ClockworkResearch.scss');
 @include meta.load-css('./interfaces/ClockworkSlab.scss');
@@ -94,7 +95,7 @@
 
 // NT Theme
 .Layout__content {
-  background-image: url('../assets/bg-nanotrasen.svg');
+  background-image: url('../assets/bg-mint.svg'); // MINT EDIT
   background-size: 70%;
   background-position: center;
   background-repeat: no-repeat;

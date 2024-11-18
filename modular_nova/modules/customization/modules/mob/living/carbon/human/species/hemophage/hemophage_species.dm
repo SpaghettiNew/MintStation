@@ -26,7 +26,7 @@
 	changesource_flags = MIRROR_BADMIN | WABBAJACK | MIRROR_MAGIC | MIRROR_PRIDE | ERT_SPAWN | RACE_SWAP | SLIME_EXTRACT
 	examine_limb_id = SPECIES_HUMAN
 	skinned_type = /obj/item/stack/sheet/animalhide/human
-	veteran_only = TRUE
+	veteran_only = FALSE //Mint edit
 
 /datum/species/hemophage/allows_food_preferences()
 	return FALSE
@@ -172,6 +172,9 @@
 
 	return to_add
 
+/datum/species/hemophage/get_cry_sound(mob/living/carbon/human/hemophage)
+	var/datum/species/human/human_species = GLOB.species_prototypes[/datum/species/human]
+	return human_species.get_cry_sound(hemophage)
 
 // We don't need to mention that they're undead, as the perks that come from it are otherwise already explicited, and they might no longer be actually undead from a gameplay perspective, eventually.
 /datum/species/hemophage/create_pref_biotypes_perks()

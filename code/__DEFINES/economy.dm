@@ -1,5 +1,5 @@
 /// Number of paychecks jobs start with at the creation of a new bank account for a player (So at shift-start or game join, but not a blank new account.)
-#define STARTING_PAYCHECKS 10 // NOVA EDIT: increase from 5 to 10
+#define STARTING_PAYCHECKS 20 // NOVA EDIT: increase from 5 to 20
 /// How much mail the Economy SS will create per minute, regardless of firing time.
 #define MAX_MAIL_PER_MINUTE 3
 /// Probability of using letters of envelope sprites on all letters.
@@ -41,7 +41,10 @@
 #define ACCOUNT_CAR_NAME "Cargo Budget"
 #define ACCOUNT_SEC "SEC"
 #define ACCOUNT_SEC_NAME "Defense Budget"
-
+// MINT EDIT START
+#define ACCOUNT_NT "NT"
+#define ACCOUNT_NT_NAME "CentCom Budget"
+// MINT EDIT END
 #define IS_DEPARTMENTAL_CARD(card) (card in SSeconomy.dep_cards)
 #define IS_DEPARTMENTAL_ACCOUNT(account) (account in SSeconomy.departmental_accounts)
 

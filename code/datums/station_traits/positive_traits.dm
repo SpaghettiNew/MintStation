@@ -272,7 +272,7 @@
 		/datum/job/clown = /obj/item/organ/internal/cyberimp/brain/anti_stun, //HONK!
 		/datum/job/cook = /obj/item/organ/internal/cyberimp/chest/nutriment/plus,
 		/datum/job/coroner = /obj/item/organ/internal/tongue/bone, //hes got a bone to pick with you
-		/datum/job/curator = /obj/item/organ/internal/eyes/robotic/glow,
+		/datum/job/curator = /obj/item/organ/internal/cyberimp/brain/connector,
 		/datum/job/detective = /obj/item/organ/internal/lungs/cybernetic/tier3,
 		/datum/job/doctor = /obj/item/organ/internal/cyberimp/arm/surgery,
 		/datum/job/geneticist = /obj/item/organ/internal/fly, //we don't care about implants, we have cancer.
@@ -285,6 +285,7 @@
 		/datum/job/paramedic = /obj/item/organ/internal/cyberimp/eyes/hud/medical,
 		/datum/job/prisoner = /obj/item/organ/internal/eyes/robotic/shield,
 		/datum/job/psychologist = /obj/item/organ/internal/ears/cybernetic/whisper,
+		/datum/job/pun_pun = /obj/item/organ/internal/cyberimp/arm/strongarm,
 		/datum/job/quartermaster = /obj/item/organ/internal/stomach/cybernetic/tier3,
 		/datum/job/research_director = /obj/item/organ/internal/cyberimp/bci,
 		/datum/job/roboticist = /obj/item/organ/internal/cyberimp/eyes/hud/diagnostic,
@@ -306,6 +307,10 @@
 		/datum/job/engineering_guard = /obj/item/organ/internal/cyberimp/arm/flash,
 		/datum/job/telecomms_specialist = /obj/item/organ/internal/ears/cybernetic/xray,
 		// NOVA EDIT END
+		// MINT EDIT ADDITION START
+		/datum/job/centcom_admiral = /obj/item/organ/internal/heart/cybernetic/tier3,
+		/datum/job/centcom_officer = /obj/item/organ/internal/heart/cybernetic/tier3,
+		// MINT EDIT END
 	)
 
 /datum/station_trait/cybernetic_revolution/New()
