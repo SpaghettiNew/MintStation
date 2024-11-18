@@ -76,7 +76,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 /obj/effect/landmark/start/prisoner/after_round_start()
 	return
 
-// Mint Station Edit Start
+// MINT EDIT: START
 /obj/effect/landmark/start/centcom_admiral
 	name = "CentCom Admiral"
 	icon_state = "admiral"
@@ -98,7 +98,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark)
 
 /obj/effect/landmark/start/centcom_officer/after_round_start()
 	return
-// Mint Station Edit END
+// MINT EDIT: END
 
 /obj/effect/landmark/start/janitor
 	name = "Janitor"
