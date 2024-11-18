@@ -330,20 +330,6 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/evacuation)
-"bp" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "XCCcustoms2";
-	name = "XCC Customs 2 Shutters"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "XCCcustoms2";
-	name = "XCC Customs 2 Shutters"
-	},
-/turf/open/floor/iron,
-/area/centcom/central_command_areas/control)
 "bx" = (
 /turf/open/floor/iron/goonplaque{
 	desc = "This is a plaque commemorating the thunderdome and all those who have died at its pearly blast doors."
@@ -56813,7 +56799,7 @@ iu
 MF
 io
 Op
-bp
+vP
 vP
 vP
 vP
