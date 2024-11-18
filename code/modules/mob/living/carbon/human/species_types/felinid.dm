@@ -125,17 +125,6 @@
 		return SFX_SNORE_FEMALE
 	return SFX_SNORE_MALE
 
-/datum/species/human/felinid/get_sigh_sound(mob/living/carbon/human/felinid)
-	if(felinid.physique == FEMALE)
-		return 'sound/voice/human/female_sigh.ogg'
-	return 'sound/voice/human/male_sigh.ogg'
-
-/datum/species/human/felinid/get_sniff_sound(mob/living/carbon/human/felinid)
-	if(felinid.physique == FEMALE)
-		return 'sound/voice/human/female_sniff.ogg'
-	return 'sound/voice/human/male_sniff.ogg'
-
-
 
 /proc/mass_purrbation()
 	for(var/mob in GLOB.human_list)
