@@ -20,6 +20,9 @@
 /datum/supply_pack/centcom/limited
 	group = "Imports"
 
+/datum/supply_pack/centcom/spare
+        group = "Spare equipment"
+
 // CentCom General
 
 /datum/supply_pack/centcom/general/clear_pda
@@ -29,6 +32,12 @@
 	contains = list(/obj/item/modular_computer/pda/clear)
 
 // CentCom Weaponry
+
+/datum/supply_pack/centcom/weapon/sabre
+        name = "Officer's sabre"
+        desc = "An elegant weapon, its monomolecular edge is capable of cutting through flesh and bone with ease."
+        cost = 10000
+        contains = list(/obj/item/melee/sabre)
 
 /datum/supply_pack/centcom/weapon/pulse_rifle
 	name = "Pulse rifle"
@@ -137,3 +146,8 @@
 	desc = "Circuit Imprinter circuitboard."
 	cost = 5000
 	contains = list(/obj/item/circuitboard/machine/circuit_imprinter)
+
+// To be filled:
+// CentCom Spare
+
+/datum/supply_pack/centcom/spare
