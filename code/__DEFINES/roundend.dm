@@ -38,4 +38,4 @@
 /// The emergency shuttle was successfully hijacked
 #define SHUTTLE_HIJACK 24
 /// The Deathsquad has destroyed the station with its own self-destruct nuclear device
-#define STATION_NUKED_BY_DEATHSQUAD
+#define STATION_NUKED_BY_DEATHSQUAD 25
