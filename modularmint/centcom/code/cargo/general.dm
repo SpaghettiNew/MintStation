@@ -20,6 +20,9 @@
 /datum/supply_pack/centcom/limited
 	group = "Limited"
 
+/datum/supply_pack/centcom/spare
+    group = "Spare equipment"
+
 // CentCom General
 
 /datum/supply_pack/centcom/general/clear_pda
@@ -29,6 +32,12 @@
 	contains = list(/obj/item/modular_computer/pda/clear)
 
 // CentCom Weaponry
+
+/datum/supply_pack/centcom/weapon/esword
+    name = "Energy sword"
+    desc = "An easily concealable, lightweight energy sword."
+    cost = 10000
+    contains = list(/obj/item/melee/energy)
 
 /datum/supply_pack/centcom/weapon/pulse_rifle
 	name = "Pulse rifle"
@@ -49,7 +58,6 @@
 	desc = "A high-speed rescue suit by Nanotrasen, intended for its emergency response teams."
 	cost = 30000
 	contains = list(/obj/item/mod/control/pre_equipped/responsory)
-
 
 // CentCom Limited
 
@@ -137,3 +145,8 @@
 	desc = "Circuit Imprinter circuitboard."
 	cost = 5000
 	contains = list(/obj/item/circuitboard/machine/circuit_imprinter)
+
+// To be filled:
+// CentCom Spare
+
+/datum/supply_pack/centcom/spare

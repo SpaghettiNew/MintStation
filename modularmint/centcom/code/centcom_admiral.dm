@@ -1,11 +1,11 @@
 /datum/job/centcom_admiral
 	title = JOB_CCNT_ADMIRAL
-	description = "A high-ranking official who is the highest executive power in Central Command"
+	description = "A high-ranking official holding the highest executive power in Central Command."
 	department_head = list(JOB_CENTCOM)
 	faction = FACTION_STATION
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "Central Command"
+	supervisors = "NanoTrasen Supreme Command"
 	minimal_player_age = 14
 	exp_requirements = 600
 	exp_required_type = EXP_TYPE_CREW
@@ -13,6 +13,7 @@
 	exp_granted_type = EXP_TYPE_CREW
 	config_tag = "CENTCOM_ADMIRAL"
 
+	mind_traits = (MARTIALART_CQC) //MINT EDIT (possibly broken)
 	department_for_prefs = /datum/job_department/captain
 
 	departments_list = list(
@@ -20,7 +21,7 @@
 		/datum/job_department/central_command
 	)
 
-	outfit = /datum/outfit/centcom/naval/admiral
+	outfit = /datum/outfit/centcom/naval/commander
 
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_CMD
@@ -40,7 +41,21 @@
 	banned_augments = list(HEAD_RESTRICTED_AUGMENTS)
 
 	veteran_only = TRUE
+	allow_bureaucratic_error = FALSE
+	req_admin_notify = TRUE
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
+
+
+	/datum/outfit/job/centcom_admiral //MINT EDIT: START (possibly broken)
+	name = "Central Command Admiral"
+	jobtype = /datum/job/centcom_admiral
+	backpack_contents = list(
+		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
+		/obj/item/clipboard = 1,
+		/obj/item/folder = 1,
+		/obj/item/gun/ballistic/revolver/ocelot = 1 ,
+	) //MINT EDIT: END
+
 /*
 /obj/effect/landmark/start/centcom_admiral
 	name = "CentCom Admiral"
