@@ -330,20 +330,6 @@
 	},
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/evacuation)
-"bp" = (
-/obj/machinery/door/poddoor/shutters{
-	id = "XCCcustoms2";
-	name = "XCC Customs 2 Shutters"
-	},
-/obj/effect/turf_decal/stripes/line{
-	dir = 8
-	},
-/obj/machinery/door/poddoor/shutters{
-	id = "XCCcustoms2";
-	name = "XCC Customs 2 Shutters"
-	},
-/turf/open/floor/iron,
-/area/centcom/central_command_areas/control)
 "bx" = (
 /turf/open/floor/iron/goonplaque{
 	desc = "This is a plaque commemorating the thunderdome and all those who have died at its pearly blast doors."
@@ -965,7 +951,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 4;
 	name = "siding"
@@ -974,7 +959,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 8;
 	name = "siding"
@@ -3443,7 +3427,6 @@
 	icon_state = "siding_wood_end";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 1;
 	name = "siding"
@@ -4334,7 +4317,6 @@
 	icon_state = "random_fly_1";
 	pixel_y = 1;
 	icon = 'icons/obj/medical/organs/organs.dmi';
-	layer = 2.91;
 	color = "#ffffff";
 	dir = 4;
 	name = "antennae";
@@ -4667,7 +4649,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 4;
 	name = "antennae"
@@ -4676,7 +4657,6 @@
 	icon_state = "siding_wood";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 8;
 	name = "siding"
@@ -7321,7 +7301,6 @@
 /obj/structure/decorative{
 	pixel_y = -8;
 	icon = 'icons/obj/devices/voice.dmi';
-	layer = 2.91;
 	color = "#00000";
 	dir = 4;
 	name = "antennae";
@@ -7839,7 +7818,6 @@
 	icon_state = "siding_wood_end";
 	pixel_y = 0;
 	icon = 'icons/turf/decals.dmi';
-	layer = 2.91;
 	color = "#5d341f";
 	dir = 2;
 	name = "siding"
@@ -9912,8 +9890,7 @@
 	},
 /obj/structure/flora/bush/large{
 	pixel_x = -16;
-	pixel_y = -3;
-	layer = 5.02
+	pixel_y = -3
 	},
 /obj/structure/flora/bush/jungle/a{
 	pixel_x = -3;
@@ -56821,7 +56798,7 @@ iu
 MF
 io
 Op
-bp
+vP
 vP
 vP
 vP
