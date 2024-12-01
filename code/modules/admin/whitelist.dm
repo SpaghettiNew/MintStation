@@ -55,23 +55,23 @@ MintStation EDIT END -  DISCORD WHITELIST */
 	admin_only = TRUE
 
 /datum/tgs_chat_command/whitelist/Run(datum/tgs_chat_user/sender, params)
-	var/default_limit = 100
-	var/ckey_width = 20
-	var/manager_width = 20
-	var/manager_id_width = 20
-	var/action_width = 10
-	var/date_width = 19
-	var/comment_width = 30
-
-	var/limit
-	var/comment
-	var/manager_id
-	var/key
-
 	var/start_time = world.realtime
 	log_world("[sender.friendly_name] issued command: [params] at [start_time]")
 
 	try
+		var/default_limit = 100
+		var/ckey_width = 20
+		var/manager_width = 20
+		var/manager_id_width = 20
+		var/action_width = 10
+		var/date_width = 19
+		var/comment_width = 30
+
+		var/limit
+		var/comment
+		var/manager_id
+		var/key
+
 		if(!CONFIG_GET(flag/usewhitelist))
 			log_world("Whitelist is not enabled, but command is being processed.")
 
