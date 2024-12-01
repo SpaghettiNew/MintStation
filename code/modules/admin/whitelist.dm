@@ -68,258 +68,274 @@ MintStation EDIT END -  DISCORD WHITELIST */
 	var/manager_id
 	var/key
 
-	. = ""
-	if(!CONFIG_GET(flag/usewhitelist))
-		. += "The whitelist is not enabled!\nThe command will continue to execute anyway\n"
+	var/start_time = world.realtime
+	log_world("[sender.friendly_name] issued command: [params] at [start_time]")
 
-	var/list/all_params = splittext(params, " ")
-	if(length(all_params) < 1)
-		. += "[src.help_text]"
-		return
+	spawn(0)
+		var/end_time
+		try
+			. = ""
+			if(!CONFIG_GET(flag/usewhitelist))
+				. += "The whitelist is not enabled!\nThe command will continue to execute anyway\n"
 
-	switch(all_params[1])
-		if("add")
-			if(length(all_params) < 2)
-				. += "Invalid argument"
+			var/list/all_params = splittext(params, " ")
+			if(length(all_params) < 1)
+				. += "[src.help_text]"
 				return
 
-			key = ckey(all_params[2])
+			switch(all_params[1])
+				if("add")
+					if(length(all_params) < 2)
+						. += "Invalid argument"
+						return
 
-			// Extract comment if any
-			comment = ""
-			if(length(all_params) > 2)
-				var/pos = findtext(params, all_params[2]) + length(all_params[2]) + 1
-				comment = copytext(params, pos)
+					key = ckey(all_params[2])
 
-			var/datum/db_query/query_get_whitelist = SSdbcore.NewQuery({"
-				SELECT id FROM [format_table_name("whitelist")]
-				WHERE ckey = :ckey
-			"}, list("ckey" = key)
-			)
-			if(!query_get_whitelist.Execute())
-				. += "Failed to add ckey `[key]`\n"
-				. += query_get_whitelist.ErrorMsg()
-				qdel(query_get_whitelist)
-				return
+					// Extract comment if any
+					comment = ""
+					if(length(all_params) > 2)
+						var/pos = findtext(params, all_params[2]) + length(all_params[2]) + 1
+						comment = copytext(params, pos)
 
-			if(query_get_whitelist.NextRow())
-				qdel(query_get_whitelist)
-				var/datum/db_query/query_update_whitelist = SSdbcore.NewQuery({"
-					UPDATE [format_table_name("whitelist")]
-					SET deleted = 0, manager = :manager, manager_id = :manager_id, comment = :comment
-					WHERE ckey = :ckey
-				"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
+					log_world("Adding [key] to whitelist with comment: [comment]")
 
-				if(!query_update_whitelist.Execute())
-					. += "Failed to update ckey `[key]`\n"
-					. += query_update_whitelist.ErrorMsg()
-					qdel(query_update_whitelist)
+					var/datum/db_query/query_get_whitelist = SSdbcore.NewQuery({"
+						SELECT id FROM [format_table_name("whitelist")]
+						WHERE ckey = :ckey
+					"}, list("ckey" = key)
+					)
+					if(!query_get_whitelist.Execute())
+						log_world("Failed to check whitelist for [key]: [query_get_whitelist.ErrorMsg()]")
+						. += "Failed to add ckey `[key]`\n"
+						. += query_get_whitelist.ErrorMsg()
+						qdel(query_get_whitelist)
+						return
+
+					if(query_get_whitelist.NextRow())
+						qdel(query_get_whitelist)
+						var/datum/db_query/query_update_whitelist = SSdbcore.NewQuery({"
+							UPDATE [format_table_name("whitelist")]
+							SET deleted = 0, manager = :manager, manager_id = :manager_id, comment = :comment
+							WHERE ckey = :ckey
+						"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
+
+						if(!query_update_whitelist.Execute())
+							log_world("Failed to update whitelist for [key]: [query_update_whitelist.ErrorMsg()]")
+							. += "Failed to update ckey `[key]`\n"
+							. += query_update_whitelist.ErrorMsg()
+							qdel(query_update_whitelist)
+							return
+
+						qdel(query_update_whitelist)
+						log_world("[key] re-added to whitelist successfully")
+						. += "`[key]` has been re-added to the whitelist!\n"
+						return
+
+
+					qdel(query_get_whitelist)
+
+					var/datum/db_query/query_add_whitelist = SSdbcore.NewQuery({"
+						INSERT INTO [format_table_name("whitelist")] (ckey, manager, manager_id, comment)
+						VALUES (:ckey, :manager, :manager_id, :comment)
+					"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
+
+					if(!query_add_whitelist.Execute())
+						log_world("Failed to add whitelist entry for [key]: [query_add_whitelist.ErrorMsg()]")
+						. += "Failed to add ckey `[key]`\n"
+						. += query_add_whitelist.ErrorMsg()
+						qdel(query_add_whitelist)
+						return
+
+					qdel(query_add_whitelist)
+					log_world("[key] added to whitelist successfully")
+					. += "`[key]` has been added to the whitelist!\n"
 					return
 
-				qdel(query_update_whitelist)
+				if("remove")
+					if(length(all_params) < 2)
+						. += "Invalid argument"
+						return
+					log_world("[sender.friendly_name] requested removal of [params]")
+					key = ckey(all_params[2])
+					comment = ""
+					if(length(all_params) > 2)
+						var/pos = findtext(params, all_params[2]) + length(all_params[2]) + 1
+						comment = copytext(params, pos)
 
-				. += "`[key]` has been re-added to the whitelist!\n"
-				return
+					var/datum/db_query/query_remove_whitelist = SSdbcore.NewQuery({"
+						UPDATE [format_table_name("whitelist")]
+						SET deleted = 1, manager = :manager, manager_id = :manager_id, comment = :comment
+						WHERE ckey = :ckey
+					"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
 
+					if(!query_remove_whitelist.Execute())
+						. += "Failed to remove ckey `[key]`"
+						. += query_remove_whitelist.ErrorMsg()
+						qdel(query_remove_whitelist)
+						return
 
-			qdel(query_get_whitelist)
+					qdel(query_remove_whitelist)
 
-			if(length(all_params) < 2)
-				. += "Invalid argument"
-				return
+					. += "`[key]` has been removed from the whitelist!\n"
+					return
 
-			var/datum/db_query/query_add_whitelist = SSdbcore.NewQuery({"
-				INSERT INTO [format_table_name("whitelist")] (ckey, manager, manager_id, comment)
-				VALUES (:ckey, :manager, :manager_id, :comment)
-			"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
+				if("list")
+					limit = default_limit  // Use default limit
+					if(length(all_params) > 1)
+						limit = text2num(all_params[2])
+						if(!limit || limit <= 0)
+							limit = default_limit
+					log_world("[sender.friendly_name] requested whitelist list with params: [params]")
 
-			if(!query_add_whitelist.Execute())
-				. += "Failed to add ckey `[key]`\n"
-				. += query_add_whitelist.ErrorMsg()
-				qdel(query_add_whitelist)
-				return
+					var/datum/db_query/query_get_all_whitelist = SSdbcore.NewQuery({"
+						SELECT ckey FROM [format_table_name("whitelist")] WHERE deleted = 0 ORDER BY last_modified DESC LIMIT :limit
+					"}, list("limit" = limit))
 
-			qdel(query_add_whitelist)
+					if(!query_get_all_whitelist.Execute())
+						. += "Failed to get all whitelisted keys\n"
+						. += query_get_all_whitelist.ErrorMsg()
+						qdel(query_get_all_whitelist)
+						return
 
-			. += "`[key]` has been added to the whitelist!\n"
-			return
+					while(query_get_all_whitelist.NextRow())
+						var/key_result = query_get_all_whitelist.item[1]
+						. += "`[key_result]`\n"
 
-		if("remove")
-			if(length(all_params) < 2)
-				. += "Invalid argument"
-				return
+					qdel(query_get_all_whitelist)
+					return
 
-			key = ckey(all_params[2])
-			comment = ""
-			if(length(all_params) > 2)
-				var/pos = findtext(params, all_params[2]) + length(all_params[2]) + 1
-				comment = copytext(params, pos)
+				if("logs")
+					limit = default_limit  // Use default limit
+					if(length(all_params) > 1)
+						limit = text2num(all_params[2])
+						if(!limit || limit <= 0)
+							limit = default_limit
+					log_world("[sender.friendly_name] requested whitelist logs with params: [params]")
 
-			var/datum/db_query/query_remove_whitelist = SSdbcore.NewQuery({"
-				UPDATE [format_table_name("whitelist")]
-				SET deleted = 1, manager = :manager, manager_id = :manager_id, comment = :comment
-				WHERE ckey = :ckey
-			"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
+					var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
+						SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
+						ORDER BY date DESC
+						LIMIT :limit
+					"}, list("limit" = limit))
 
-			if(!query_remove_whitelist.Execute())
-				. += "Failed to remove ckey `[key]`"
-				. += query_remove_whitelist.ErrorMsg()
-				qdel(query_remove_whitelist)
-				return
+					if(!query_get_logs.Execute())
+						. += "Failed to get whitelist logs\n"
+						. += query_get_logs.ErrorMsg()
+						qdel(query_get_logs)
+						return
 
-			qdel(query_remove_whitelist)
+					. += "```\n"
+					. += "Whitelist Log (last [limit] entries):\n"
 
-			. += "`[key]` has been removed from the whitelist!\n"
-			return
+					. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
+					while(query_get_logs.NextRow())
+						var/ckey_value = query_get_logs.item[1]
+						var/manager_value = query_get_logs.item[2]
+						var/manager_id_value = query_get_logs.item[3]
+						var/action_value = query_get_logs.item[4]
+						var/date_value = query_get_logs.item[5]
+						var/comment_value = query_get_logs.item[6]
+						. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
 
-		if("list")
-			limit = default_limit  // Use default limit
-			if(length(all_params) > 1)
-				limit = text2num(all_params[2])
-				if(!limit || limit <= 0)
-					limit = default_limit
+					. += "```\n"
+					qdel(query_get_logs)
+					return
 
-			var/datum/db_query/query_get_all_whitelist = SSdbcore.NewQuery({"
-				SELECT ckey FROM [format_table_name("whitelist")] WHERE deleted = 0 ORDER BY last_modified DESC LIMIT :limit
-			"}, list("limit" = limit))
+				if("managerlog")
+					if(length(all_params) < 2)
+						. += "Invalid argument: manager_id is required."
+						return
+					log_world("[sender.friendly_name] requested manager log with params: [params]")
 
-			if(!query_get_all_whitelist.Execute())
-				. += "Failed to get all whitelisted keys\n"
-				. += query_get_all_whitelist.ErrorMsg()
-				qdel(query_get_all_whitelist)
-				return
+					manager_id = all_params[2]
+					limit = default_limit  // Use default limit
+					if(length(all_params) > 2)
+						limit = text2num(all_params[3])
+						if(!limit || limit <= 0)
+							limit = default_limit
 
-			while(query_get_all_whitelist.NextRow())
-				var/key_result = query_get_all_whitelist.item[1]
-				. += "`[key_result]`\n"
+					var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
+						SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
+						WHERE manager_id =  REPLACE(REPLACE(:manager_id, '<@', ''), '>', '')
+						ORDER BY date DESC
+						LIMIT :limit
+					"}, list("manager_id" = manager_id, "limit" = limit))
 
-			qdel(query_get_all_whitelist)
-			return
+					if(!query_get_logs.Execute())
+						. += "Failed to get logs for manager_id `[manager_id]`\n"
+						. += query_get_logs.ErrorMsg()
+						qdel(query_get_logs)
+						return
 
-		if("logs")
-			limit = default_limit  // Use default limit
-			if(length(all_params) > 1)
-				limit = text2num(all_params[2])
-				if(!limit || limit <= 0)
-					limit = default_limit
+					. += "```\n"
+					. += "Whitelist Log for manager_id `[manager_id]` (last [limit] entries):\n"
 
-			var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
-				SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
-				ORDER BY date DESC
-				LIMIT :limit
-			"}, list("limit" = limit))
+					. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
+					while(query_get_logs.NextRow())
+						var/ckey_value = query_get_logs.item[1]
+						var/manager_value = query_get_logs.item[2]
+						var/manager_id_value = query_get_logs.item[3]
+						var/action_value = query_get_logs.item[4]
+						var/date_value = query_get_logs.item[5]
+						var/comment_value = query_get_logs.item[6]
+						. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
 
-			if(!query_get_logs.Execute())
-				. += "Failed to get whitelist logs\n"
-				. += query_get_logs.ErrorMsg()
-				qdel(query_get_logs)
-				return
+					. += "```\n"
+					qdel(query_get_logs)
+					return
 
-			. += "```\n"
-			. += "Whitelist Log (last [limit] entries):\n"
+				if("useraudit")
+					if(length(all_params) < 2)
+						. += "Invalid argument: ckey is required."
+						return
+					log_world("[sender.friendly_name] requested user audit with params: [params]")
 
-			. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
-			while(query_get_logs.NextRow())
-				var/ckey_value = query_get_logs.item[1]
-				var/manager_value = query_get_logs.item[2]
-				var/manager_id_value = query_get_logs.item[3]
-				var/action_value = query_get_logs.item[4]
-				var/date_value = query_get_logs.item[5]
-				var/comment_value = query_get_logs.item[6]
-				. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
+					key = ckey(all_params[2])
+					limit = default_limit  // Use default limit
+					if(length(all_params) > 2)
+						limit = text2num(all_params[3])
+						if(!limit || limit <= 0)
+							limit = default_limit
 
-			. += "```\n"
-			qdel(query_get_logs)
-			return
+					var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
+						SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
+						WHERE ckey = :ckey
+						ORDER BY date DESC
+						LIMIT :limit
+					"}, list("ckey" = key, "limit" = limit))
 
-		if("managerlog")
-			if(length(all_params) < 2)
-				. += "Invalid argument: manager_id is required."
-				return
+					if(!query_get_logs.Execute())
+						. += "Failed to get logs for ckey `[key]`\n"
+						. += query_get_logs.ErrorMsg()
+						qdel(query_get_logs)
+						return
 
-			manager_id = all_params[2]
-			limit = default_limit  // Use default limit
-			if(length(all_params) > 2)
-				limit = text2num(all_params[3])
-				if(!limit || limit <= 0)
-					limit = default_limit
+					. += "```\n"
+					. += "Whitelist Log for ckey `[key]` (last [limit] entries):\n"
 
-			var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
-				SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
-				WHERE manager_id =  REPLACE(REPLACE(:manager_id, '<@', ''), '>', '')
-				ORDER BY date DESC
-				LIMIT :limit
-			"}, list("manager_id" = manager_id, "limit" = limit))
+					. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
+					while(query_get_logs.NextRow())
+						var/ckey_value = query_get_logs.item[1]
+						var/manager_value = query_get_logs.item[2]
+						var/manager_id_value = query_get_logs.item[3]
+						var/action_value = query_get_logs.item[4]
+						var/date_value = query_get_logs.item[5]
+						var/comment_value = query_get_logs.item[6]
+						. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
 
-			if(!query_get_logs.Execute())
-				. += "Failed to get logs for manager_id `[manager_id]`\n"
-				. += query_get_logs.ErrorMsg()
-				qdel(query_get_logs)
-				return
+					. += "```\n"
+					qdel(query_get_logs)
+					return
 
-			. += "```\n"
-			. += "Whitelist Log for manager_id `[manager_id]` (last [limit] entries):\n"
-
-			. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
-			while(query_get_logs.NextRow())
-				var/ckey_value = query_get_logs.item[1]
-				var/manager_value = query_get_logs.item[2]
-				var/manager_id_value = query_get_logs.item[3]
-				var/action_value = query_get_logs.item[4]
-				var/date_value = query_get_logs.item[5]
-				var/comment_value = query_get_logs.item[6]
-				. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
-
-			. += "```\n"
-			qdel(query_get_logs)
-			return
-
-		if("useraudit")
-			if(length(all_params) < 2)
-				. += "Invalid argument: ckey is required."
-				return
-
-			key = ckey(all_params[2])
-			limit = default_limit  // Use default limit
-			if(length(all_params) > 2)
-				limit = text2num(all_params[3])
-				if(!limit || limit <= 0)
-					limit = default_limit
-
-			var/datum/db_query/query_get_logs = SSdbcore.NewQuery({"
-				SELECT ckey, manager, manager_id, action, date, comment FROM [format_table_name("whitelist_log")]
-				WHERE ckey = :ckey
-				ORDER BY date DESC
-				LIMIT :limit
-			"}, list("ckey" = key, "limit" = limit))
-
-			if(!query_get_logs.Execute())
-				. += "Failed to get logs for ckey `[key]`\n"
-				. += query_get_logs.ErrorMsg()
-				qdel(query_get_logs)
-				return
-
-			. += "```\n"
-			. += "Whitelist Log for ckey `[key]` (last [limit] entries):\n"
-
-			. += pad_string("ckey", ckey_width) + pad_string("manager", manager_width) + pad_string("manager_id", manager_id_width) + pad_string("action", action_width) + pad_string("date", date_width) + pad_string("comment", comment_width) + "\n"
-			while(query_get_logs.NextRow())
-				var/ckey_value = query_get_logs.item[1]
-				var/manager_value = query_get_logs.item[2]
-				var/manager_id_value = query_get_logs.item[3]
-				var/action_value = query_get_logs.item[4]
-				var/date_value = query_get_logs.item[5]
-				var/comment_value = query_get_logs.item[6]
-				. += pad_string(ckey_value, ckey_width) + pad_string(manager_value, manager_width) + pad_string(manager_id_value, manager_id_width) + pad_string(action_value, action_width) + pad_string(date_value, date_width) + pad_string(comment_value, comment_width) + "\n"
-
-			. += "```\n"
-			qdel(query_get_logs)
-			return
-
-		else
-			. += "Unknown command!"
-			. += "[src.help_text]"
-			return
+				else
+					. += "Unknown command!"
+					log_world("[sender.friendly_name] requested unknown command: [params]")
+					. += "[src.help_text]"
+					return
+		catch
+			log_world("Error while processing command [params]: [src]")
+		end_time = world.realtime
+		log_world("Command [params] processed in [end_time - start_time] seconds")
 
 /proc/pad_string(str, width)
 	var/padded_str = "[str]"
