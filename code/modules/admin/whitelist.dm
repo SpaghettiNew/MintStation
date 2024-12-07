@@ -37,7 +37,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 	"}, list("ckey" = key)
 	)
 
-	if(!query_get_whitelist.Execute())
+	if(!query_get_whitelist.warn_execute())
 		log_sql("Whitelist check for ckey [key] failed to execute. Rejecting")
 		message_admins("Whitelist check for ckey [key] failed to execute. Rejecting")
 		qdel(query_get_whitelist)
@@ -99,7 +99,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				WHERE ckey = :ckey
 			"}, list("ckey" = key)
 			)
-			if(!query_get_whitelist.Execute())
+			if(!query_get_whitelist.warn_execute())
 				. += "Failed to add ckey `[key]`\n"
 				. += query_get_whitelist.ErrorMsg()
 				qdel(query_get_whitelist)
@@ -114,7 +114,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 					WHERE ckey = :ckey
 				"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
 
-				if(!query_update_whitelist.Execute())
+				if(!query_update_whitelist.warn_execute())
 					. += "Failed to update ckey `[key]`\n"
 					. += query_update_whitelist.ErrorMsg()
 					qdel(query_update_whitelist)
@@ -132,7 +132,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				VALUES (:ckey, :manager, :manager_id, :comment)
 			"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
 
-			if(!query_add_whitelist.Execute())
+			if(!query_add_whitelist.warn_execute())
 				. += "Failed to add ckey `[key]`\n"
 				. += query_add_whitelist.ErrorMsg()
 				qdel(query_add_whitelist)
@@ -162,7 +162,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				WHERE ckey = :ckey
 			"}, list("ckey" = key, "manager" = sender.friendly_name, "manager_id" = sender.id, "comment" = comment))
 
-			if(!query_remove_whitelist.Execute())
+			if(!query_remove_whitelist.warn_execute())
 				. += "Failed to remove ckey `[key]`"
 				. += query_remove_whitelist.ErrorMsg()
 				qdel(query_remove_whitelist)
@@ -184,7 +184,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				SELECT ckey FROM [format_table_name("whitelist")] WHERE deleted = 0 ORDER BY last_modified DESC LIMIT :limit
 			"}, list("limit" = limit))
 
-			if(!query_get_all_whitelist.Execute())
+			if(!query_get_all_whitelist.warn_execute())
 				. += "Failed to get all whitelisted keys\n"
 				. += query_get_all_whitelist.ErrorMsg()
 				qdel(query_get_all_whitelist)
@@ -210,7 +210,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				LIMIT :limit
 			"}, list("limit" = limit))
 
-			if(!query_get_logs.Execute())
+			if(!query_get_logs.warn_execute())
 				. += "Failed to get whitelist logs\n"
 				. += query_get_logs.ErrorMsg()
 				qdel(query_get_logs)
@@ -252,7 +252,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				LIMIT :limit
 			"}, list("manager_id" = manager_id, "limit" = limit))
 
-			if(!query_get_logs.Execute())
+			if(!query_get_logs.warn_execute())
 				. += "Failed to get logs for manager_id `[manager_id]`\n"
 				. += query_get_logs.ErrorMsg()
 				qdel(query_get_logs)
@@ -294,7 +294,7 @@ MintStation EDIT END -  DISCORD WHITELIST */
 				LIMIT :limit
 			"}, list("ckey" = key, "limit" = limit))
 
-			if(!query_get_logs.Execute())
+			if(!query_get_logs.warn_execute())
 				. += "Failed to get logs for ckey `[key]`\n"
 				. += query_get_logs.ErrorMsg()
 				qdel(query_get_logs)
