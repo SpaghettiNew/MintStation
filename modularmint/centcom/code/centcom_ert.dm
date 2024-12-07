@@ -90,8 +90,8 @@
 			var/datum/antagonist/ert/request_911/ert_antag = new cops_to_send
 
 			cop.mind.add_antag_datum(ert_antag)
-			cop.mind.set_assigned_role(SSjob.GetJobType(ert_antag.ert_job_path))
-			SSjob.SendToLateJoin(cop)
+			cop.mind.set_assigned_role(SSjob.get_job_type(ert_antag.ert_job_path))
+			SSjob.send_to_late_join(cop)
 			cop.grant_language(/datum/language/common, source = LANGUAGE_SPAWNER)
 
 			if(cops_to_send == /datum/antagonist/ert/request_911/atmos) // charge for atmos techs
@@ -121,7 +121,7 @@
 
 	if (GLOB.cops_arrived)
 		to_chat(user, span_warning("911 has already been called this shift!"))
-		playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+		playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 		return FALSE
 
 	if (!issilicon(user))
@@ -129,11 +129,11 @@
 		var/obj/item/card/id/id_card = held_item?.GetID()
 		if (!istype(id_card))
 			to_chat(user, span_warning("You need to swipe your ID!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 		if (!(ACCESS_CAPTAIN in id_card.access))
 			to_chat(user, span_warning("You are not authorized to do this!"))
-			playsound(src, 'sound/machines/terminal_prompt_deny.ogg', 50, FALSE)
+			playsound(src, 'sound/machines/terminal/terminal_prompt_deny.ogg', 50, FALSE)
 			return FALSE
 	else
 		to_chat(user, "The console refuses to let you dial 911 as an AI or Cyborg!")
@@ -163,7 +163,7 @@
 
 	call_911(called_group)
 	to_chat(user, span_notice("Authorization confirmed. 911 call dispatched to the Sol Federation [called_group_pretty]."))
-	playsound(src, 'sound/machines/terminal_prompt_confirm.ogg', 50, FALSE)
+	playsound(src, 'sound/machines/terminal/terminal_prompt_confirm.ogg', 50, FALSE)
 
 #undef EMERGENCY_RESPONSE_POLICE
 #undef EMERGENCY_RESPONSE_ATMOS
