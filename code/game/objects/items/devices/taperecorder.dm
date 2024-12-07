@@ -20,6 +20,7 @@
 	var/playsleepseconds = 0
 	var/obj/item/tape/mytape
 	var/starting_tape_type = /obj/item/tape/random
+	var/open_panel = FALSE
 	var/canprint = TRUE
 	var/list/icons_available = list()
 	var/radial_icon_file = 'icons/hud/radial_taperecorder.dmi'
@@ -57,7 +58,7 @@
 /obj/item/taperecorder/examine(mob/user)
 	. = ..()
 	if(in_range(src, user) || isobserver(user))
-		. += span_notice("The display reads:")
+		. += span_notice("The wire panel is [open_panel ? "opened" : "closed"]. The display reads:")
 		. += "[readout()]"
 
 /obj/item/taperecorder/click_alt(mob/user)
@@ -121,7 +122,7 @@
 
 /obj/item/taperecorder/proc/can_use(mob/user)
 	if(user && ismob(user))
-		if(!user.incapacitated)
+		if(!user.incapacitated())
 			return TRUE
 	return FALSE
 
@@ -161,7 +162,7 @@
 
 	if(mytape && recording)
 		mytape.timestamp += mytape.used_capacity
-		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [speaker.GetVoice()]: [raw_message]"
+		mytape.storedinfo += "\[[time2text(mytape.used_capacity,"mm:ss")]\] [raw_message]"
 
 
 /obj/item/taperecorder/verb/record()

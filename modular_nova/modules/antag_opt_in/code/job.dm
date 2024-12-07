@@ -62,7 +62,7 @@
 	if (new_suffix)
 		description += new_suffix
 
-/datum/controller/subsystem/job/setup_occupations()
+/datum/controller/subsystem/job/SetupOccupations()
 	. = ..()
 
 	if(CONFIG_GET(flag/disable_antag_opt_in_preferences))

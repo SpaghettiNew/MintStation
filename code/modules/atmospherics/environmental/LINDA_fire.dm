@@ -307,7 +307,7 @@
 		var/mob/living/immolated = arrived
 		immolated.fire_act(temperature, volume)
 
-/obj/effect/hotspot/singularity_pull(atom/singularity, current_size)
+/obj/effect/hotspot/singularity_pull()
 	return
 
 #undef INSUFFICIENT

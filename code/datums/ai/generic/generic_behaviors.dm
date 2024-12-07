@@ -101,10 +101,11 @@
 	if(QDELETED(target))
 		return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_FAILED
 
+	pawn.set_combat_mode(FALSE)
 	if(held_item)
 		held_item.melee_attack_chain(pawn, target)
 	else
-		controller.ai_interact(target = target, combat_mode = FALSE)
+		pawn.UnarmedAttack(target, TRUE)
 
 	return AI_BEHAVIOR_DELAY | AI_BEHAVIOR_SUCCEEDED
 
@@ -275,7 +276,7 @@
 		return AI_BEHAVIOR_INSTANT
 	living_pawn.manual_emote(emote)
 	if(speech_sound) // Only audible emotes will pass in a sound
-		playsound(living_pawn, speech_sound, 80, vary = TRUE, pressure_affected =TRUE, ignore_walls = FALSE)
+		playsound(living_pawn, speech_sound, 80, vary = TRUE)
 	return AI_BEHAVIOR_INSTANT | AI_BEHAVIOR_SUCCEEDED
 
 /datum/ai_behavior/perform_speech

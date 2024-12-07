@@ -271,7 +271,7 @@
 	overlays_standing[VAGINA_LAYER] = vagina_overlay
 
 	apply_overlay(VAGINA_LAYER)
-	update_body_parts()
+	update_mutant_bodyparts()
 
 /// Updating anus slot
 /mob/living/carbon/human/proc/update_inv_anus()
@@ -295,7 +295,7 @@
 	overlays_standing[ANUS_LAYER] = anus_overlay
 
 	apply_overlay(ANUS_LAYER)
-	update_body_parts()
+	update_mutant_bodyparts()
 
 /// Updating nipples slot
 /mob/living/carbon/human/proc/update_inv_nipples()
@@ -319,7 +319,7 @@
 	overlays_standing[NIPPLES_LAYER] = nipples_overlay
 
 	apply_overlay(NIPPLES_LAYER)
-	update_body_parts()
+	update_mutant_bodyparts()
 
 /// Updating penis slot
 /mob/living/carbon/human/proc/update_inv_penis()
@@ -343,7 +343,7 @@
 	overlays_standing[PENIS_LAYER] = penis_overlay
 
 	apply_overlay(PENIS_LAYER)
-	update_body_parts()
+	update_mutant_bodyparts()
 
 /// Helper proc for calling all the lewd slot update_inv_ procs.
 /mob/living/carbon/human/proc/update_inv_lewd()

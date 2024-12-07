@@ -157,7 +157,7 @@
 
 /datum/computer_file/program/messenger/ui_state(mob/user)
 	if(issilicon(user))
-		return GLOB.deep_inventory_state
+		return GLOB.reverse_contained_state
 	return GLOB.default_state
 
 /datum/computer_file/program/messenger/ui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
@@ -165,7 +165,7 @@
 	switch(action)
 		if("PDA_ringSet")
 			var/mob/living/user = usr
-			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, max_length = MAX_MESSAGE_LEN, encode = FALSE)
+			var/new_ringtone = tgui_input_text(user, "Enter a new ringtone", "Ringtone", ringtone, encode = FALSE)
 			if(!computer.can_interact(user))
 				computer.balloon_alert(user, "can't reach!")
 				return FALSE
@@ -337,7 +337,6 @@
 
 	static_data["can_spam"] = spam_mode
 	static_data["is_silicon"] = issilicon(user)
-	static_data["remote_silicon"] = (isAI(user) || iscyborg(user)) && !istype(computer, /obj/item/modular_computer/pda/silicon) //Silicon is accessing a PDA on the ground, not their internal one. Avoiding pAIs in this check.
 	static_data["alert_able"] = alert_able
 
 	return static_data
@@ -402,8 +401,8 @@
 		chat.can_reply = FALSE
 		return
 	var/target_name = target.computer.saved_identification
-	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]", "NT Messaging[target_name ? " ([target_name])" : ""]", max_length = MAX_MESSAGE_LEN, encode = FALSE)
-	send_message(user, input_message, list(chat), subtle = subtle) // NOVA EDIT CHANGE - ORIGINAL: send_message(user, input_message, list(chat))
+	var/input_message = tgui_input_text(user, "Enter [mime_mode ? "emojis":"a message"]", "NT Messaging[target_name ? " ([target_name])" : ""]", encode = FALSE)
+	send_message(user, input_message, list(chat), subtle = subtle)
 
 /// Helper proc that sends a message to everyone
 /datum/computer_file/program/messenger/proc/send_message_to_all(mob/living/user, message)
@@ -598,7 +597,7 @@
 		if(sender)
 			to_chat(sender, span_notice("ERROR: Network unavailable, please try again later."))
 		if(alert_able && !alert_silenced)
-			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
+			playsound(computer, 'sound/machines/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 	// used for logging
@@ -630,7 +629,7 @@
 		if(sender)
 			to_chat(sender, span_notice("ERROR: Server is not responding."))
 		if(alert_able && !alert_silenced)
-			playsound(computer, 'sound/machines/terminal/terminal_error.ogg', 15, TRUE)
+			playsound(computer, 'sound/machines/terminal_error.ogg', 15, TRUE)
 		return FALSE
 
 
@@ -740,7 +739,7 @@
 		SEND_SIGNAL(computer, COMSIG_COMPUTER_RECEIVED_MESSAGE, sender_title, inbound_message, photo_message)
 
 	if (alert_able && (!alert_silenced || is_rigged))
-		computer.ring(ringtone, receievers)
+		computer.ring(ringtone)
 
 	SStgui.update_uis(computer)
 	update_pictures_for_all()

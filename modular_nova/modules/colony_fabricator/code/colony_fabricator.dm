@@ -6,6 +6,7 @@
 	icon = 'modular_nova/modules/colony_fabricator/icons/machines.dmi'
 	icon_state = "colony_lathe"
 	base_icon_state = "colony_lathe"
+	production_animation = null
 	circuit = null
 	production_animation = "colony_lathe_n"
 	light_color = LIGHT_COLOR_BRIGHT_YELLOW
@@ -78,7 +79,7 @@
 
 	if(design_delta > 0)
 		say("Received [design_delta] new design[design_delta == 1 ? "" : "s"].")
-		playsound(src, 'sound/machines/beep/twobeep_high.ogg', 50, TRUE)
+		playsound(src, 'sound/machines/twobeep_high.ogg', 50, TRUE)
 
 	update_static_data_for_all_viewers()
 
@@ -86,8 +87,6 @@
 
 /obj/item/flatpacked_machine
 	name = "flat-packed rapid construction fabricator"
-	/// For all flatpacked machines, set the desc to the type_to_deploy followed by ::desc to reuse the type_to_deploy's description
-	desc = /obj/machinery/rnd/production/colony_lathe::desc
 	icon = 'modular_nova/modules/colony_fabricator/icons/packed_machines.dmi'
 	icon_state = "colony_lathe_packed"
 	w_class = WEIGHT_CLASS_BULKY
@@ -98,6 +97,7 @@
 
 /obj/item/flatpacked_machine/Initialize(mapload)
 	. = ..()
+	desc = initial(type_to_deploy.desc)
 	give_deployable_component()
 	give_manufacturer_examine()
 

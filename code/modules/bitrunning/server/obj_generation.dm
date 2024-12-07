@@ -38,14 +38,9 @@
 
 
 /// Generates a new avatar for the bitrunner.
-/obj/machinery/quantum_server/proc/generate_avatar(turf/destination, datum/outfit/netsuit, datum/preferences/prefs, include_loadout = FALSE) // NOVA EDIT CHANGE - Prefs argument - ORIGINAL: /obj/machinery/quantum_server/proc/generate_avatar(turf/destination, datum/outfit/netsuit)
+/obj/machinery/quantum_server/proc/generate_avatar(turf/destination, datum/outfit/netsuit)
 	var/mob/living/carbon/human/avatar = new(destination)
 
-	// NOVA EDIT ADDITION START - PREFS!
-	if(!isnull(prefs))
-		prefs.safe_transfer_prefs_to(avatar)
-	ADD_TRAIT(avatar, TRAIT_CANNOT_CRYSTALIZE, "Bitrunning") // Stops the funny ethereal bug
-	// NOVA EDIT ADDITION END
 	var/outfit_path = generated_domain.forced_outfit || netsuit
 	var/datum/outfit/to_wear = new outfit_path()
 
@@ -58,7 +53,7 @@
 	to_wear.suit = null
 	to_wear.suit_store = null
 
-	avatar.equipOutfit(to_wear, visuals_only = TRUE)
+	avatar.equipOutfit(to_wear, visualsOnly = TRUE)
 
 	var/obj/item/clothing/under/jumpsuit = avatar.w_uniform
 	if(istype(jumpsuit))
@@ -82,10 +77,6 @@
 			new /obj/item/flashlight,
 		)
 
-	// NOVA EDIT ADDITION START
-	if(!isnull(prefs) && include_loadout)
-		avatar.equip_outfit_and_loadout(new /datum/outfit(), prefs)
-	// NOVA EDIT ADDITION END
 	var/obj/item/card/id/outfit_id = avatar.wear_id
 	if(outfit_id)
 		outfit_id.registered_account = new()
@@ -125,13 +116,9 @@
 			path = pick(generated_domain.mob_modules)
 
 		var/datum/modular_mob_segment/segment = new path()
-
-		var/list/mob_spawns = landmark.spawn_mobs(get_turf(landmark), segment)
-		if(length(mob_spawns))
-			mutation_candidate_refs += mob_spawns
-
+		segment.spawn_mobs(get_turf(landmark))
+		mutation_candidate_refs += segment.spawned_mob_refs
 		qdel(landmark)
-		qdel(segment)
 
 	return TRUE
 

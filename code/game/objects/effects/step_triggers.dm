@@ -31,7 +31,7 @@
 /obj/effect/step_trigger/singularity_act()
 	return
 
-/obj/effect/step_trigger/singularity_pull(atom/singularity, current_size)
+/obj/effect/step_trigger/singularity_pull()
 	return
 
 /* Sends a message to mob when triggered*/
@@ -220,9 +220,3 @@
 
 	if(happens_once)
 		qdel(src)
-
-/obj/effect/step_trigger/sound_effect/lavaland_cult_altar
-	happens_once = 1
-	name = "a grave mistake";
-	sound = 'sound/effects/hallucinations/i_see_you1.ogg'
-	triggerer_only = 1

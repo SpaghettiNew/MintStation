@@ -8,7 +8,6 @@
 		TRAIT_HATED_BY_DOGS,
 		TRAIT_MUTANT_COLORS,
 		TRAIT_CATLIKE_GRACE,
-		TRAIT_WATER_HATER,
 	)
 	mutanttongue = /obj/item/organ/internal/tongue/cat/tajaran
 	inherent_biotypes = MOB_ORGANIC|MOB_HUMANOID

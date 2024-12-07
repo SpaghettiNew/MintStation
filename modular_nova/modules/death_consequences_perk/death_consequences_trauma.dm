@@ -184,7 +184,7 @@
 		last_time_degraded_on_death = world.time
 
 /datum/brain_trauma/severe/death_consequences/process(seconds_per_tick)
-	if (HAS_TRAIT(owner, TRAIT_GODMODE))
+	if (owner.status_flags & GODMODE)
 		return
 
 	var/is_dead = (owner.stat == DEAD)

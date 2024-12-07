@@ -16,7 +16,7 @@
 
 	attack_verb_continuous = "claws"
 	attack_verb_simple = "claw"
-	attack_sound = 'sound/items/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_CLAW
 	verb_say = "states"
 	verb_ask = "queries"
@@ -96,19 +96,18 @@
 /mob/living/basic/hivebot/mechanic/Initialize(mapload)
 	. = ..()
 	GRANT_ACTION(/datum/action/cooldown/spell/conjure/foam_wall)
+	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
 
-/mob/living/basic/hivebot/mechanic/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
-	. = ..()
-	if(!.)
-		return FALSE
+/mob/living/basic/hivebot/mechanic/proc/pre_attack(mob/living/fixer, atom/target)
+	SIGNAL_HANDLER
 
 	if(ismachinery(target))
 		repair_machine(target)
-		return FALSE
+		return COMPONENT_HOSTILE_NO_ATTACK
 
 	if(istype(target, /mob/living/basic/hivebot))
 		repair_hivebot(target)
-		return FALSE
+		return COMPONENT_HOSTILE_NO_ATTACK
 
 /mob/living/basic/hivebot/mechanic/proc/repair_machine(obj/machinery/fixable)
 	if(fixable.get_integrity() >= fixable.max_integrity)

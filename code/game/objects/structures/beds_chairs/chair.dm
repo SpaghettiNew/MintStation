@@ -16,30 +16,7 @@
 	var/buildstacktype = /obj/item/stack/sheet/iron
 	var/buildstackamount = 1
 	var/item_chair = /obj/item/chair // if null it can't be picked up
-	///How much sitting on this chair influences fishing difficulty
-	var/fishing_modifier = -5
-	var/has_armrest = FALSE
-	// The mutable appearance used for the overlay over buckled mobs.
-	var/mutable_appearance/armrest
 
-/obj/structure/chair/Initialize(mapload)
-	. = ..()
-	if(prob(0.2))
-		name = "tactical [name]"
-		fishing_modifier -= 8
-	MakeRotate()
-	if (has_armrest)
-		gen_armrest()
-	if(can_buckle && fishing_modifier)
-		AddComponent(/datum/component/adjust_fishing_difficulty, fishing_modifier)
-
-/obj/structure/chair/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
-	if(same_z_layer || !has_armrest)
-		return ..()
-	cut_overlay(armrest)
-	QDEL_NULL(armrest)
-	gen_armrest()
-	return ..()
 
 /obj/structure/chair/examine(mob/user)
 	. = ..()
@@ -47,13 +24,18 @@
 	if(!has_buckled_mobs() && can_buckle)
 		. += span_notice("While standing on [src], drag and drop your sprite onto [src] to buckle to it.")
 
+/obj/structure/chair/Initialize(mapload)
+	. = ..()
+	if(prob(0.2))
+		name = "tactical [name]"
+	MakeRotate()
+
 ///This proc adds the rotate component, overwrite this if you for some reason want to change some specific args.
 /obj/structure/chair/proc/MakeRotate()
 	AddComponent(/datum/component/simple_rotation, ROTATION_IGNORE_ANCHORED|ROTATION_GHOSTS_ALLOWED)
 
 /obj/structure/chair/Destroy()
 	SSjob.latejoin_trackers -= src //These may be here due to the arrivals shuttle
-	QDEL_NULL(armrest)
 	return ..()
 
 /obj/structure/chair/atom_deconstruct(disassembled)
@@ -77,19 +59,6 @@
 		return
 	. = ..()
 
-/obj/structure/chair/proc/gen_armrest()
-	armrest = GetArmrest()
-	armrest.layer = ABOVE_MOB_LAYER
-	update_armrest()
-
-/obj/structure/chair/proc/GetArmrest()
-	return mutable_appearance(icon, "[icon_state]_armrest")
-
-/obj/structure/chair/proc/update_armrest()
-	if(has_buckled_mobs())
-		add_overlay(armrest)
-	else
-		cut_overlay(armrest)
 
 ///allows each chair to request the electrified_buckle component with overlays that dont look ridiculous
 /obj/structure/chair/proc/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
@@ -97,7 +66,7 @@
 	if(!user.temporarilyRemoveItemFromInventory(input_shock_kit))
 		return
 	if(!overlays_from_child_procs || overlays_from_child_procs.len == 0)
-		var/image/echair_over_overlay = image('icons/obj/chairs.dmi', loc, "echair_over", OBJ_LAYER)
+		var/image/echair_over_overlay = image('icons/obj/chairs.dmi', loc, "echair_over")
 		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, list(echair_over_overlay), FALSE)
 	else
 		AddComponent(/datum/component/electrified_buckle, (SHOCK_REQUIREMENT_ITEM | SHOCK_REQUIREMENT_LIVE_CABLE | SHOCK_REQUIREMENT_SIGNAL_RECEIVED_TOGGLE), input_shock_kit, overlays_from_child_procs, FALSE)
@@ -106,7 +75,7 @@
 		to_chat(user, span_notice("You connect the shock kit to the [name], electrifying it "))
 	else
 		user.put_in_active_hand(input_shock_kit)
-		to_chat(user, span_notice("You cannot fit the shock kit onto the [name]!"))
+		to_chat(user, "<span class='notice'> You cannot fit the shock kit onto the [name]!")
 
 
 /obj/structure/chair/wrench_act_secondary(mob/living/user, obj/item/weapon)
@@ -144,14 +113,9 @@
 		playsound(src, 'modular_nova/modules/oversized/sound/chair_break.ogg', 70, TRUE)
 		deconstruct()
 	//NOVA EDIT END
-	if (has_armrest)
-		update_armrest()
-
 /obj/structure/chair/post_unbuckle_mob()
 	. = ..()
 	handle_layer()
-	if (has_armrest)
-		update_armrest()
 
 /obj/structure/chair/setDir(newdir)
 	..()
@@ -175,7 +139,6 @@
 	buildstacktype = /obj/item/stack/sheet/mineral/wood
 	buildstackamount = 3
 	item_chair = /obj/item/chair/wood
-	fishing_modifier = -6
 
 /obj/structure/chair/wood/narsie_act()
 	return
@@ -193,8 +156,46 @@
 	max_integrity = 70
 	buildstackamount = 2
 	item_chair = null
-	fishing_modifier = -7
-	has_armrest = TRUE
+	// The mutable appearance used for the overlay over buckled mobs.
+	var/mutable_appearance/armrest
+
+/obj/structure/chair/comfy/Initialize(mapload)
+	gen_armrest()
+	return ..()
+
+/obj/structure/chair/comfy/on_changed_z_level(turf/old_turf, turf/new_turf, same_z_layer, notify_contents)
+	if(same_z_layer)
+		return ..()
+	cut_overlay(armrest)
+	QDEL_NULL(armrest)
+	gen_armrest()
+	return ..()
+
+/obj/structure/chair/comfy/proc/gen_armrest()
+	armrest = GetArmrest()
+	armrest.layer = ABOVE_MOB_LAYER
+	update_armrest()
+
+/obj/structure/chair/comfy/proc/GetArmrest()
+	return mutable_appearance(icon, "[icon_state]_armrest")
+
+/obj/structure/chair/comfy/Destroy()
+	QDEL_NULL(armrest)
+	return ..()
+
+/obj/structure/chair/comfy/post_buckle_mob(mob/living/M)
+	. = ..()
+	update_armrest()
+
+/obj/structure/chair/comfy/proc/update_armrest()
+	if(has_buckled_mobs())
+		add_overlay(armrest)
+	else
+		cut_overlay(armrest)
+
+/obj/structure/chair/comfy/post_unbuckle_mob()
+	. = ..()
+	update_armrest()
 
 /obj/structure/chair/comfy/brown
 	color = rgb(70, 47, 28)
@@ -219,7 +220,7 @@
 
 /obj/structure/chair/comfy/shuttle/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
 	if(!overlays_from_child_procs)
-		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1, layer = OBJ_LAYER))
+		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1))
 	. = ..()
 
 /obj/structure/chair/comfy/shuttle/tactical
@@ -230,14 +231,11 @@
 	desc = "A luxurious chair, the many purple scales reflect the light in a most pleasing manner."
 	icon_state = "carp_chair"
 	buildstacktype = /obj/item/stack/sheet/animalhide/carp
-	fishing_modifier = -12
 
 /obj/structure/chair/office
-	name = "office chair"
 	anchored = FALSE
 	buildstackamount = 5
 	item_chair = null
-	fishing_modifier = -6
 	icon_state = "officechair_dark"
 
 /obj/structure/chair/office/Initialize(mapload)
@@ -246,15 +244,13 @@
 
 /obj/structure/chair/office/electrify_self(obj/item/assembly/shock_kit/input_shock_kit, mob/user, list/overlays_from_child_procs)
 	if(!overlays_from_child_procs)
-		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1, layer = OBJ_LAYER))
+		overlays_from_child_procs = list(image('icons/obj/chairs.dmi', loc, "echair_over", pixel_x = -1))
 	. = ..()
 
 /obj/structure/chair/office/tactical
 	name = "tactical swivel chair"
-	fishing_modifier = -10
 
 /obj/structure/chair/office/light
-	name = "office chair"
 	icon_state = "officechair_white"
 
 //Stool
@@ -325,7 +321,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	throwforce = 10
 	demolition_mod = 1.25
 	throw_range = 3
-	hitsound = 'sound/items/trayhit/trayhit1.ogg'
+	hitsound = 'sound/items/trayhit1.ogg'
 	hit_reaction_chance = 50
 	custom_materials = list(/datum/material/iron =SHEET_MATERIAL_AMOUNT)
 	item_flags = SKIP_FANTASY_ON_SPAWN
@@ -415,7 +411,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	name = "bamboo stool"
 	icon_state = "bamboo_stool"
 	inhand_icon_state = "stool_bamboo"
-	hitsound = 'sound/items/weapons/genhit1.ogg'
+	hitsound = 'sound/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/stool/bamboo
 	break_chance = 50	//Submissive and breakable unlike the chad iron stool
 
@@ -428,7 +424,7 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	inhand_icon_state = "woodenchair"
 	resistance_flags = FLAMMABLE
 	max_integrity = 70
-	hitsound = 'sound/items/weapons/genhit1.ogg'
+	hitsound = 'sound/weapons/genhit1.ogg'
 	origin_type = /obj/structure/chair/wood
 	custom_materials = null
 	break_chance = 50
@@ -445,7 +441,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	desc = "You sit in this. Either by will or force. Looks REALLY uncomfortable."
 	icon_state = "chairold"
 	item_chair = null
-	fishing_modifier = 4
 
 /obj/structure/chair/bronze
 	name = "brass chair"
@@ -455,8 +450,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	buildstacktype = /obj/item/stack/sheet/bronze
 	buildstackamount = 1
 	item_chair = null
-	fishing_modifier = -13 //the pinnacle of Ratvarian technology.
-	has_armrest = TRUE
 	/// Total rotations made
 	var/turns = 0
 
@@ -474,9 +467,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	turns++
 	if(turns >= 8)
 		STOP_PROCESSING(SSfastprocess, src)
-
-/obj/structure/chair/bronze/MakeRotate()
-	return
 
 /obj/structure/chair/bronze/click_alt(mob/user)
 	turns = 0
@@ -499,7 +489,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	item_chair = null
 	obj_flags = parent_type::obj_flags | NO_DEBRIS_AFTER_DECONSTRUCTION
 	alpha = 0
-	fishing_modifier = -21 //it only lives for 25 seconds, so we make them worth it.
 
 /obj/structure/chair/mime/wrench_act_secondary(mob/living/user, obj/item/weapon)
 	return NONE
@@ -521,7 +510,6 @@ MAPPING_DIRECTIONAL_HELPERS(/obj/structure/chair/stool/bar, 0)
 	buildstacktype = /obj/item/stack/sheet/plastic
 	buildstackamount = 2
 	item_chair = /obj/item/chair/plastic
-	fishing_modifier = -10
 
 /obj/structure/chair/plastic/post_buckle_mob(mob/living/Mob)
 	Mob.pixel_y += 2

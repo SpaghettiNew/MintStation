@@ -101,28 +101,24 @@ SUBSYSTEM_DEF(vote)
 
 	// stringify the winners to prevent potential unimplemented serialization errors.
 	// Perhaps this can be removed in the future and we assert that vote choices must implement serialization.
-	var/final_winner_string = (final_winner && "[final_winner]") || "NO WINNER"
+	var/final_winner_string = final_winner && "[final_winner]"
 	var/list/winners_string = list()
-
-	if(length(winners))
-		for(var/winner in winners)
-			winners_string += "[winner]"
-	else
-		winners_string = list("NO WINNER")
+	for(var/winner in winners)
+		winners_string += "[winner]"
 
 	var/list/vote_log_data = list(
-		"type" = "[current_vote.type]",
 		"choices" = vote_choice_data,
 		"total" = total_votes,
 		"winners" = winners_string,
 		"final_winner" = final_winner_string,
 	)
-	log_vote("vote finalized", vote_log_data)
-	if(to_display)
-		to_chat(world, span_infoplain(vote_font("\n[to_display]")))
+	var/log_string = replacetext(to_display, "\n", "\\n") // 'keep' the newlines, but dont actually print them as newlines
+	log_vote(log_string, vote_log_data)
+	to_chat(world, span_infoplain(vote_font("\n[to_display]")))
 
 	// Finally, doing any effects on vote completion
-	current_vote.finalize_vote(final_winner)
+	if (final_winner) // if no one voted, or the vote cannot be won, final_winner will be null
+		current_vote.finalize_vote(final_winner)
 
 /**
  * One selection per person, and the selection with the most votes wins.

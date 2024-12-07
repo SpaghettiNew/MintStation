@@ -9,7 +9,6 @@
 #define NUKE_RESULT_WRONG_STATION_DEAD 8
 #define NUKE_RESULT_HIJACK_DISK 9
 #define NUKE_RESULT_HIJACK_NO_DISK 10
-#define NUKE_RESULT_DEATHSQUAD_WIN 11
 
 /// Min players requireed for nukes to declare war
 #define CHALLENGE_MIN_PLAYERS 50
@@ -166,7 +165,7 @@ GLOBAL_LIST_INIT(syndicate_employers, list(
 	"Waffle Corporation Terrorist",
 	"Waffle Corporation",
 ))
-///employers that are from Nanotrasen
+///employers that are from nanotrasen
 GLOBAL_LIST_INIT(nanotrasen_employers, list(
 	"Champions of Evil",
 	"Corporate Climber",

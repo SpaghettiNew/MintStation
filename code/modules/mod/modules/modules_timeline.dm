@@ -421,7 +421,7 @@
 /obj/structure/chrono_field/singularity_act()
 	return
 
-/obj/structure/chrono_field/singularity_pull(atom/singularity, current_size)
+/obj/structure/chrono_field/singularity_pull()
 	return
 
 /obj/structure/chrono_field/ex_act()

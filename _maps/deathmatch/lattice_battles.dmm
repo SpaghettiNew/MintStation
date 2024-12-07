@@ -9,17 +9,28 @@
 	dir = 1
 	},
 /obj/item/clothing/head/cone,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "cN" = (
 /obj/structure/railing/unbreakable{
 	dir = 8
 	},
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
+"df" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/decal/cleanable/dirt/dust,
+/turf/open/chasm,
+/area/deathmatch/fullbright)
 "dM" = (
+/turf/open/chasm,
+/area/deathmatch/fullbright)
+"eK" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/landmark/deathmatch_player_spawn,
+/obj/effect/decal/cleanable/dirt/dust,
 /turf/open/chasm,
 /area/deathmatch/fullbright)
 "gz" = (
@@ -34,12 +45,12 @@
 	dir = 1
 	},
 /obj/structure/flora/lunar_plant/style_1,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "ho" = (
 /obj/structure/flora/lunar_plant/style_1,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /obj/structure/railing/unbreakable{
 	dir = 6
 	},
@@ -51,7 +62,7 @@
 	},
 /obj/structure/flora/rock/pile/style_random,
 /obj/structure/flora/lunar_plant/style_3,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "jb" = (
@@ -64,7 +75,7 @@
 	},
 /obj/structure/flora/rock/pile/style_random,
 /obj/structure/flora/lunar_plant/style_3,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "rE" = (
@@ -85,12 +96,12 @@
 /obj/structure/railing/unbreakable{
 	dir = 4
 	},
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "tL" = (
 /obj/structure/railing/unbreakable,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "uJ" = (
@@ -98,7 +109,7 @@
 	dir = 4
 	},
 /obj/item/clothing/head/cone,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "uO" = (
@@ -128,7 +139,7 @@
 	dir = 8
 	},
 /obj/structure/flora/lunar_plant/style_1,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "AS" = (
@@ -139,7 +150,7 @@
 /obj/structure/railing/unbreakable{
 	dir = 1
 	},
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "Cf" = (
@@ -179,7 +190,7 @@
 	dir = 10
 	},
 /obj/structure/flora/lunar_plant/style_1,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "KO" = (
@@ -188,7 +199,7 @@
 /area/deathmatch/fullbright)
 "LN" = (
 /obj/structure/railing/corner,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "MF" = (
@@ -206,11 +217,12 @@
 /area/deathmatch/fullbright)
 "NA" = (
 /obj/structure/flora/lunar_plant/style_2,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "NG" = (
 /obj/structure/lattice/catwalk,
+/obj/effect/decal/cleanable/dirt/dust,
 /obj/structure/closet/crate/cardboard,
 /obj/item/statuebust,
 /turf/open/chasm,
@@ -221,7 +233,7 @@
 /turf/open/chasm,
 /area/deathmatch/fullbright)
 "NY" = (
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /obj/structure/railing/unbreakable,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
@@ -233,15 +245,21 @@
 /mob/living/basic/spider/giant/nurse/away_caves,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
+"Sv" = (
+/obj/structure/lattice/catwalk,
+/obj/effect/decal/cleanable/dirt/dust,
+/obj/effect/decal/cleanable/rubble,
+/turf/open/chasm,
+/area/deathmatch/fullbright)
 "SL" = (
 /obj/structure/flora/rock/pile/style_random,
 /obj/structure/flora/lunar_plant/style_3,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "Uy" = (
 /obj/item/clothing/head/cone,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /obj/structure/railing/corner/unbreakable{
 	dir = 1
 	},
@@ -252,7 +270,7 @@
 	dir = 9
 	},
 /obj/structure/flora/rock/style_random,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "Xf" = (
@@ -267,7 +285,7 @@
 /area/deathmatch/fullbright)
 "Xo" = (
 /obj/structure/flora/rock/style_random,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "Yu" = (
@@ -276,11 +294,11 @@
 	dir = 6
 	},
 /obj/structure/flora/lunar_plant/style_3,
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "YH" = (
-/obj/effect/invisible_wall,
+/obj/effect/playeronly_barrier,
 /turf/open/misc/asteroid/moon,
 /area/deathmatch/fullbright)
 "YV" = (
@@ -448,9 +466,9 @@ MF
 MF
 MF
 vk
+df
 vk
-vk
-vk
+df
 vk
 MF
 dM
@@ -553,12 +571,12 @@ vk
 MF
 MF
 vk
-vk
-NI
+df
+Sv
 vk
 MF
 vk
-vk
+df
 MF
 vk
 vk
@@ -577,7 +595,7 @@ CI
 tL
 MF
 vk
-vk
+df
 MF
 MF
 vk
@@ -585,10 +603,10 @@ vk
 MF
 MF
 vk
+df
 vk
 vk
-vk
-vk
+df
 vk
 hH
 gN
@@ -615,7 +633,7 @@ vk
 vk
 vk
 vk
-vk
+df
 NG
 gN
 gN
@@ -631,7 +649,7 @@ gN
 Yu
 MF
 MF
-wb
+eK
 vk
 vk
 vk
@@ -685,7 +703,7 @@ gN
 gN
 gN
 bm
-vk
+df
 vk
 vk
 vk
@@ -720,7 +738,7 @@ MF
 vk
 vk
 vk
-vk
+df
 MF
 vk
 vk
@@ -777,7 +795,7 @@ vk
 vk
 vk
 vk
-vk
+df
 gN
 gN
 gN

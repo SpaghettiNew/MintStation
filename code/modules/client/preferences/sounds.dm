@@ -122,9 +122,3 @@
 	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
 	savefile_key = "sound_radio_noise"
 	savefile_identifier = PREFERENCE_PLAYER
-
-/// Controls hearing AI VOX announcements
-/datum/preference/toggle/sound_ai_vox
-	category = PREFERENCE_CATEGORY_GAME_PREFERENCES
-	savefile_key = "sound_ai_vox"
-	savefile_identifier = PREFERENCE_PLAYER

@@ -83,7 +83,6 @@
 		ACCESS_CAPTAIN,
 		ACCESS_CHANGE_IDS,
 	)
-	job = /datum/job/blueshield
 
 /datum/id_trim/job/nanotrasen_consultant
 	assignment = "Nanotrasen Consultant"
@@ -141,7 +140,6 @@
 		ACCESS_CAPTAIN,
 		ACCESS_CHANGE_IDS,
 	)
-	job = /datum/job/nanotrasen_consultant
 
 /datum/id_trim/job/corrections_officer
 	assignment = "Corrections Officer"

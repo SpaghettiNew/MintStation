@@ -112,7 +112,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/science
@@ -182,46 +182,11 @@
 	inhand_icon_state = null
 	actions_types = list(/datum/action/item_action/flip)
 	dog_fashion = /datum/dog_fashion/head/eyepatch
-	var/flipped = FALSE
 
-/obj/item/clothing/glasses/eyepatch/click_alt(mob/user)
+/obj/item/clothing/glasses/eyepatch/attack_self(mob/user, modifiers)
 	. = ..()
-	flip_eyepatch()
-
-/obj/item/clothing/glasses/eyepatch/attack_self(mob/user)
-	. = ..()
-	flip_eyepatch()
-
-/obj/item/clothing/glasses/eyepatch/proc/flip_eyepatch()
-	flipped = !flipped
-	icon_state = flipped ? "[base_icon_state]_flipped" : base_icon_state
-	if (!ismob(loc))
-		return
-	var/mob/user = loc
+	icon_state = (icon_state == base_icon_state) ? "[base_icon_state]_flipped" : base_icon_state
 	user.update_worn_glasses()
-	if (!ishuman(user))
-		return
-	var/mob/living/carbon/human/human_user = user
-	if (human_user.get_eye_scars() & (flipped ? RIGHT_EYE_SCAR : LEFT_EYE_SCAR))
-		tint = INFINITY
-	else
-		tint = initial(tint)
-	human_user.update_tint()
-
-/obj/item/clothing/glasses/eyepatch/equipped(mob/living/user, slot)
-	if (!ishuman(user))
-		return ..()
-	var/mob/living/carbon/human/human_user = user
-	// lol lmao
-	if (human_user.get_eye_scars() & (flipped ? RIGHT_EYE_SCAR : LEFT_EYE_SCAR))
-		tint = INFINITY
-	else
-		tint = initial(tint)
-	return ..()
-
-/obj/item/clothing/glasses/eyepatch/dropped(mob/living/user)
-	. = ..()
-	tint = initial(tint)
 
 /obj/item/clothing/glasses/eyepatch/medical
 	name = "medical eyepatch"
@@ -286,7 +251,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 	glass_colour_type = /datum/client_colour/glass_colour/lightgreen
 
@@ -419,7 +384,7 @@
 	throw_speed = 4
 	attack_verb_continuous = list("slices")
 	attack_verb_simple = list("slice")
-	hitsound = 'sound/items/weapons/bladeslice.ogg'
+	hitsound = 'sound/weapons/bladeslice.ogg'
 	sharpness = SHARP_EDGED
 
 /obj/item/clothing/glasses/sunglasses/gar/orange
@@ -480,20 +445,8 @@
 	glass_colour_type = /datum/client_colour/glass_colour/gray
 	alternate_worn_layer = ABOVE_BODY_FRONT_HEAD_LAYER // NOVA EDIT - Just so it works until I make the change upstream
 
-/obj/item/clothing/glasses/welding/Initialize(mapload)
-	. = ..()
-	if(!up)
-		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
-
-/obj/item/clothing/glasses/welding/attack_self(mob/living/user)
+/obj/item/clothing/glasses/welding/attack_self(mob/user)
 	adjust_visor(user)
-
-/obj/item/clothing/glasses/welding/adjust_visor(mob/user)
-	. = ..()
-	if(up)
-		qdel(GetComponent(/datum/component/adjust_fishing_difficulty))
-	else
-		AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/welding/update_icon_state()
 	. = ..()
@@ -512,10 +465,6 @@
 	flags_cover = GLASSESCOVERSEYES
 	tint = INFINITY // You WILL Be blind, no matter what
 	dog_fashion = /datum/dog_fashion/head
-
-/obj/item/clothing/glasses/blindfold/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 8)
 
 /obj/item/clothing/glasses/trickblindfold
 	name = "blindfold"
@@ -672,10 +621,6 @@
 	var/list/hudlist = list(DATA_HUD_MEDICAL_ADVANCED, DATA_HUD_DIAGNOSTIC, DATA_HUD_SECURITY_ADVANCED, DATA_HUD_BOT_PATH)
 	var/xray = FALSE
 
-/obj/item/clothing/glasses/debug/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, -15)
-
 /obj/item/clothing/glasses/debug/equipped(mob/user, slot)
 	. = ..()
 	if(!(slot & ITEM_SLOT_EYES))
@@ -761,10 +706,6 @@
 	flags_cover = GLASSESCOVERSEYES
 	/// Hallucination datum currently being used for seeing mares
 	var/datum/hallucination/stored_hallucination
-
-/obj/item/clothing/glasses/nightmare_vision/Initialize(mapload)
-	. = ..()
-	AddComponent(/datum/component/adjust_fishing_difficulty, 13)
 
 /obj/item/clothing/glasses/nightmare_vision/Destroy()
 	QDEL_NULL(stored_hallucination)

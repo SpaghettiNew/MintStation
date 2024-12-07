@@ -86,7 +86,6 @@ GLOBAL_LIST_INIT(possible_player_pet, list(
 	"Pig" = /mob/living/basic/pig,
 	"Pug" = /mob/living/basic/pet/dog/pug,
 	"Rabbit" = /mob/living/basic/rabbit,
-	"Shorg" = /mob/living/basic/pet/dog/shorg,
 	"Sloth" = /mob/living/basic/sloth,
 	"Snake" = /mob/living/basic/snake,
 	"Spider" = /mob/living/basic/spider/maintenance,

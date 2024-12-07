@@ -267,7 +267,7 @@
 	var/datum/component/mind_linker/linker = target
 	var/mob/living/linker_parent = linker.parent
 
-	var/message = tgui_input_text(owner, "Enter a message to transmit.", "[linker.network_name] Telepathy", max_length = MAX_MESSAGE_LEN)
+	var/message = tgui_input_text(owner, "Enter a message to transmit.", "[linker.network_name] Telepathy")
 	if(!message || QDELETED(src) || QDELETED(owner) || owner.stat == DEAD)
 		return
 

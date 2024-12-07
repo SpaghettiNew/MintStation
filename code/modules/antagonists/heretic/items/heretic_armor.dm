@@ -20,7 +20,7 @@
 	inhand_icon_state = null
 	flags_inv = HIDESHOES|HIDEJUMPSUIT
 	body_parts_covered = CHEST|GROIN|LEGS|FEET|ARMS
-	allowed = list(/obj/item/melee/sickly_blade, /obj/item/gun/ballistic/rifle/lionhunter)
+	allowed = list(/obj/item/melee/sickly_blade)
 	hoodtype = /obj/item/clothing/head/hooded/cult_hoodie/eldritch
 	// Slightly better than normal cult robes
 	armor_type = /datum/armor/cultrobes_eldritch
@@ -153,7 +153,6 @@
 	RemoveElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
-		REMOVE_TRAIT(loc, TRAIT_RESISTLOWPRESSURE, REF(src))
 		loc.balloon_alert(loc, "cloak hidden")
 		loc.visible_message(span_notice("Light shifts around [loc], making the cloak around them invisible!"))
 
@@ -164,6 +163,5 @@
 	AddElement(/datum/element/heretic_focus)
 
 	if(isliving(loc))
-		ADD_TRAIT(loc, TRAIT_RESISTLOWPRESSURE, REF(src))
 		loc.balloon_alert(loc, "cloak revealed")
 		loc.visible_message(span_notice("A kaleidoscope of colours collapses around [loc], a cloak appearing suddenly around their person!"))

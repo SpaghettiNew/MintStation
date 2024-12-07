@@ -30,7 +30,7 @@
 /obj/effect/sound_emitter/singularity_act()
 	return
 
-/obj/effect/sound_emitter/singularity_pull(atom/singularity, current_size)
+/obj/effect/sound_emitter/singularity_pull()
 	return
 
 /obj/effect/sound_emitter/examine(mob/user)
@@ -81,7 +81,7 @@
 		return
 	var/mob/user = usr
 	if(href_list["edit_label"])
-		var/new_label = tgui_input_text(user, "Choose a new label", "Sound Emitter", max_length = MAX_NAME_LEN)
+		var/new_label = tgui_input_text(user, "Choose a new label", "Sound Emitter")
 		if(!new_label)
 			return
 		maptext = MAPTEXT(new_label)

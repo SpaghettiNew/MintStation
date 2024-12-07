@@ -621,6 +621,11 @@
 	},
 /turf/open/space/basic,
 /area/space)
+"uw" = (
+/obj/effect/spawner/structure/window/reinforced,
+/obj/effect/spawner/structure/window/reinforced,
+/turf/open/floor/plating,
+/area/station/hallway/secondary/entry)
 "uy" = (
 /obj/effect/turf_decal/stripes{
 	dir = 10
@@ -2727,9 +2732,9 @@ FF
 (21,1,1) = {"
 ki
 zd
-aJ
-aJ
-aJ
+uw
+uw
+uw
 FF
 FF
 FF

@@ -19,7 +19,7 @@
 /datum/market_item/misc/sticker_box
 	name = "Syndie Sticker Box"
 	desc = "Contains 8 random stickers precisely engineered to resemble suspicious objects, which may or may not be useful for fooling crew."
-	item = /obj/item/storage/box/stickers/syndie_kit
+	item = /obj/item/storage/box/syndie_kit/stickers
 	price_min = CARGO_CRATE_VALUE * 0.5
 	price_max = CARGO_CRATE_VALUE
 	stock_max = 2

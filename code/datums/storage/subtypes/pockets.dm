@@ -87,7 +87,6 @@
 	. = ..()
 	set_holdable(list(
 		/obj/item/knife,
-		/obj/item/forging/reagent_weapon/dagger, // NOVA EDIT ADDITION
 		/obj/item/spess_knife,
 		/obj/item/switchblade,
 		/obj/item/boxcutter,
@@ -141,7 +140,6 @@
 			/obj/item/holochip,
 			/obj/item/implanter,
 			/obj/item/knife,
-			/obj/item/forging/reagent_weapon/dagger, // NOVA EDIT ADDITION
 			/obj/item/lighter,
 			/obj/item/lipstick,
 			/obj/item/match,

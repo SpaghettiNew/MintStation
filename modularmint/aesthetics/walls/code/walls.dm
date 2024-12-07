@@ -42,28 +42,40 @@
 // TG false walls, overridden back to the TG file because we overrode the base falsewall with our aesthetic icon. New ones from TG will have to be added here.
 // Yes, this is dumb
 /obj/structure/falsewall/uranium
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/gold
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/silver
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/diamond
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/plasma
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
+
+/obj/structure/falsewall/bananium
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/sandstone
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/wood
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
+
+/obj/structure/falsewall/bamboo
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/iron
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'
+
+/obj/structure/falsewall/abductor
+	icon = 'icons/turf/walls/false_walls.dmi'
+
+/obj/structure/falsewall/titanium
+	icon = 'icons/turf/walls/false_walls.dmi'
 
 /obj/structure/falsewall/plastitanium
-	icon = 'modularmint/aesthetics/walls/icons/material/false_walls.dmi'
+	icon = 'icons/turf/walls/false_walls.dmi'

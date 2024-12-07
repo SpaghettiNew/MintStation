@@ -2,11 +2,13 @@
 	name = "electrode"
 	icon_state = "spark"
 	color = COLOR_YELLOW
+	stamina = 80 // NOVA EDIT CHANGE
 	paralyze = 10 SECONDS
 	stutter = 10 SECONDS
 	jitter = 40 SECONDS
-	hitsound = 'sound/items/weapons/taserhit.ogg'
-	range = 7
+	hitsound = 'sound/weapons/taserhit.ogg'
+	//range = 7 //ORIGINAL
+	range = 5  //NOVA EDIT CHANGE - COMBAT
 	tracer_type = /obj/effect/projectile/tracer/stun
 	muzzle_type = /obj/effect/projectile/muzzle/stun
 	impact_type = /obj/effect/projectile/impact/stun

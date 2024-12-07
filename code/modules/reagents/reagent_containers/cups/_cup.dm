@@ -9,7 +9,6 @@
 	icon_state = "bottle"
 	lefthand_file = 'icons/mob/inhands/items/drinks_lefthand.dmi'
 	righthand_file = 'icons/mob/inhands/items/drinks_righthand.dmi'
-	reagent_container_liquid_sound = SFX_DEFAULT_LIQUID_SLOSH
 
 	///Like Edible's food type, what kind of drink is this?
 	var/drink_type = NONE
@@ -119,7 +118,7 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = reagents.trans_to(target, amount_per_transfer_from_this, transferred_by = user)
-		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
+		playsound(target.loc, pick('sound/effects/liquid_pour1.ogg', 'sound/effects/liquid_pour2.ogg', 'sound/effects/liquid_pour3.ogg'), 50)
 		to_chat(user, span_notice("You transfer [trans] unit\s of the solution to [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_TO, target)
 		target.update_appearance()
@@ -135,7 +134,6 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
-		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
 		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
 		target.update_appearance()
@@ -145,11 +143,11 @@
 
 /obj/item/reagent_containers/cup/interact_with_atom_secondary(atom/target, mob/living/user, list/modifiers)
 	if(user.combat_mode)
-		return NONE
+		return ITEM_INTERACT_SKIP_TO_ATTACK
 	if(!check_allowed_items(target, target_self = TRUE))
 		return NONE
 	if(!spillable)
-		return NONE
+		return ITEM_INTERACT_BLOCKING
 
 	if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
 		if(!target.reagents.total_volume)
@@ -161,13 +159,10 @@
 			return ITEM_INTERACT_BLOCKING
 
 		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this, transferred_by = user)
-		playsound(target.loc, SFX_LIQUID_POUR, 50, TRUE)
 		to_chat(user, span_notice("You fill [src] with [trans] unit\s of the contents of [target]."))
-		SEND_SIGNAL(src, COMSIG_REAGENTS_CUP_TRANSFER_FROM, target)
-		target.update_appearance()
-		return ITEM_INTERACT_SUCCESS
 
-	return NONE
+	target.update_appearance()
+	return ITEM_INTERACT_SUCCESS
 
 /obj/item/reagent_containers/cup/attackby(obj/item/attacking_item, mob/user, params)
 	var/hotness = attacking_item.get_temperature()
@@ -238,7 +233,6 @@
 	possible_transfer_amounts = list(5,10,15,20,30,60) //NOVA EDIT: Addition
 	pickup_sound = 'sound/items/handling/beaker_pickup.ogg'
 	drop_sound = 'sound/items/handling/beaker_place.ogg'
-	sound_vary = TRUE
 
 /obj/item/reagent_containers/cup/beaker/Initialize(mapload)
 	. = ..()
@@ -354,9 +348,6 @@
 
 /obj/item/reagent_containers/cup/beaker/synthflesh
 	list_reagents = list(/datum/reagent/medicine/c2/synthflesh = 50)
-
-/obj/item/reagent_containers/cup/beaker/synthflesh/named
-	name = "synthflesh beaker"
 
 /obj/item/reagent_containers/cup/bucket
 	name = "bucket"

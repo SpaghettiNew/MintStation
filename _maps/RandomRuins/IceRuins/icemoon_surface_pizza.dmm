@@ -538,7 +538,9 @@
 	},
 /area/ruin/pizzeria)
 "yP" = (
-/obj/machinery/vending/dinnerware,
+/obj/machinery/vending/dinnerware{
+	onstation = 0
+	},
 /obj/effect/turf_decal/tile/blue/opposingcorners{
 	dir = 1
 	},

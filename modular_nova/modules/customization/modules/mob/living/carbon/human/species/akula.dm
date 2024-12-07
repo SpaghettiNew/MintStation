@@ -163,12 +163,6 @@
 		equipping.equipOutfit(job.akula_outfit, visuals_only)
 
 ///Organ overwrites
-
-// set bonus
-/datum/status_effect/organ_set_bonus/carp/akula
-	id = "organ_set_bonus_carp_akula"
-	limb_overlay = null // no carpskin
-
 //Eyes
 /obj/item/organ/internal/eyes/akula
 	// Eyes over hair as bandaid for the low amounts of head matching hair
@@ -178,20 +172,10 @@
 /obj/item/organ/internal/brain/carp/akula
 	name = "azulean brain"
 
-/obj/item/organ/internal/brain/carp/akula/Initialize(mapload)
-	. = ..()
-	RemoveElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp/akula)
-
 //Heart
 /obj/item/organ/internal/heart/carp/akula
 	name = "azulean heart"
 	organ_traits = list()
-
-/obj/item/organ/internal/heart/carp/akula/Initialize(mapload)
-	. = ..()
-	RemoveElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp/akula)
 
 //Tongue
 /obj/item/organ/internal/tongue/carp/akula
@@ -199,11 +183,6 @@
 	liked_foodtypes = SEAFOOD | RAW
 	disliked_foodtypes = CLOTH | DAIRY
 	toxic_foodtypes = TOXIC
-
-/obj/item/organ/internal/tongue/carp/akula/Initialize(mapload)
-	. = ..()
-	RemoveElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp/akula)
 
 /obj/item/organ/internal/tongue/carp/akula/on_mob_insert(mob/living/carbon/tongue_owner, special, movement_flags)
 	. = ..()
@@ -224,8 +203,12 @@
 /obj/item/organ/internal/lungs/carp/akula/Initialize(mapload)
 	. = ..()
 	REMOVE_TRAIT(src, TRAIT_SPACEBREATHING, REF(src))
-	RemoveElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp)
-	AddElement(/datum/element/organ_set_bonus, /datum/status_effect/organ_set_bonus/carp/akula)
+
+/obj/item/organ/internal/lungs/carp/akula/check_breath(datum/gas_mixture/breath, mob/living/carbon/human/breather)
+	if(breath && !breather.has_status_effect(/datum/status_effect/fire_handler/wet_stacks))
+		for(var/datum/gas/gas as anything in breath.gases)
+			breath.gases[gas][MOLES] = 0 //cant filter gas out of the air unless wet
+	return ..()
 
 
 // Wet_stacks handling

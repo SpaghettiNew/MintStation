@@ -25,7 +25,6 @@ export const RADIO_PREFIXES = {
   ':m ': 'Med',
   ':n ': 'Sci',
   ':o ': 'AI',
-  ':p ': 'Ent',
   ':s ': 'Sec',
   ':t ': 'Synd',
   ':u ': 'Supp',
@@ -35,7 +34,7 @@ export const RADIO_PREFIXES = {
   ':w ': 'Dyne',
   ':k ': 'Tark',
   ':q ': 'Csun',
-  ':i ': 'Guild',
+  ':p ': 'Guild',
   ':l ': 'SolFed',
   // NOVA EDIT ADDITION END
 } as const;

@@ -1,31 +1,22 @@
-/// Slows down a cyborg for a short time.
-/datum/status_effect/borg_slow
-	id = "borg_slowdown"
-	alert_type = null
+/// Reduce a cyborg's speed when you throw things at it
+/datum/status_effect/borg_throw_slow
+	id = "borg_throw_slowdown"
+	alert_type = /atom/movable/screen/alert/status_effect/borg_throw_slow
 	duration = 3 SECONDS
-	status_type = STATUS_EFFECT_REFRESH
-	remove_on_fullheal = TRUE
-	heal_flag_necessary = HEAL_CC_STATUS
-	/// Amount of slowdown being applied
-	var/slowdown = 1
+	status_type = STATUS_EFFECT_REPLACE
 
-/datum/status_effect/borg_slow/on_creation(mob/living/new_owner, slowdown = 1)
-	src.slowdown = slowdown
-	return ..()
-
-/datum/status_effect/borg_slow/on_apply()
-	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/borg_slowdown, multiplicative_slowdown = slowdown)
-	return TRUE
-
-/datum/status_effect/borg_slow/on_remove()
-	owner.remove_movespeed_modifier(/datum/movespeed_modifier/borg_slowdown)
-
-/datum/status_effect/borg_slow/refresh(mob/living/new_owner, slowdown = 1)
+/datum/status_effect/borg_throw_slow/on_apply()
 	. = ..()
-	if(src.slowdown <= slowdown)
-		return
-	src.slowdown = slowdown
-	owner.add_or_update_variable_movespeed_modifier(/datum/movespeed_modifier/borg_slowdown, multiplicative_slowdown = src.slowdown)
+	owner.add_movespeed_modifier(/datum/movespeed_modifier/borg_throw, update = TRUE)
 
-/datum/movespeed_modifier/borg_slowdown
-	variable = TRUE
+/datum/status_effect/borg_throw_slow/on_remove()
+	. = ..()
+	owner.remove_movespeed_modifier(/datum/movespeed_modifier/borg_throw, update = TRUE)
+
+/atom/movable/screen/alert/status_effect/borg_throw_slow
+	name = "Percussive Maintenance"
+	desc = "A sudden impact has triggered your collision avoidance routines, reducing movement speed."
+	icon_state = "weaken"
+
+/datum/movespeed_modifier/borg_throw
+	multiplicative_slowdown = 0.9

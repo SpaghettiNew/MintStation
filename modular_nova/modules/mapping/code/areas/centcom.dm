@@ -6,8 +6,6 @@
 
 /area/centcom/holding
 	name = "Holding Facility"
-	mood_bonus = 25
-	mood_message = "I am taking a well deserved rest!"
 
 /area/centcom/holding/cafe
 	name = "Ghost Cafe"
@@ -26,5 +24,3 @@
 
 /area/centcom/interlink/dorm_rooms
 	name = "Interlink Dorm Rooms"
-	mood_bonus = 25
-	mood_message = "I am taking a well deserved rest!"

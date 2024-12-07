@@ -24,7 +24,7 @@
 
 	attack_verb_continuous = "bites"
 	attack_verb_simple = "bite"
-	attack_sound = 'sound/items/weapons/bite.ogg'
+	attack_sound = 'sound/weapons/bite.ogg'
 	attack_vis_effect = ATTACK_EFFECT_BITE
 
 	faction = list(FACTION_SPOOKY)
@@ -60,6 +60,7 @@
 	AddElement(/datum/element/simple_flying)
 	AddComponent(/datum/component/tameable, food_types = list(/obj/item/food/grown/carrot), tame_chance = 100)
 	ADD_TRAIT(src, TRAIT_SPACEWALK, INNATE_TRAIT)
+	RegisterSignal(src, COMSIG_HOSTILE_PRE_ATTACKINGTARGET, PROC_REF(pre_attack))
 	on_hit_overlay = mutable_appearance(icon, "[icon_state]_crying")
 
 /mob/living/basic/eyeball/UnarmedAttack(atom/attack_target, proximity_flag, list/modifiers)
@@ -93,18 +94,21 @@
 	cut_overlay(on_hit_overlay)
 
 
-/mob/living/basic/eyeball/early_melee_attack(atom/target, list/modifiers, ignore_cooldown)
-	. = ..()
-	if(!.)
-		return FALSE
+/mob/living/basic/eyeball/proc/pre_attack(mob/living/eyeball, atom/target)
+	SIGNAL_HANDLER
+
 	if(!ishuman(target))
-		return TRUE
+		return
+
 	var/mob/living/carbon/human_target = target
 	var/obj/item/organ/internal/eyes/eyes = human_target.get_organ_slot(ORGAN_SLOT_EYES)
-	if(isnull(eyes) || eyes.damage < 10)
-		return TRUE
+	if(!eyes)
+		return
+	if(eyes.damage < 10)
+		return
 	heal_eye_damage(human_target, eyes)
-	return FALSE
+	return COMPONENT_HOSTILE_NO_ATTACK
+
 
 /mob/living/basic/eyeball/proc/heal_eye_damage(mob/living/target, obj/item/organ/internal/eyes/eyes)
 	if(!COOLDOWN_FINISHED(src, eye_healing))

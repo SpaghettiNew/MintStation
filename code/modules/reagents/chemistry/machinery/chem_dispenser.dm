@@ -109,19 +109,18 @@
 	var/static/list/default_upgrade_reagents = list(
 		/datum/reagent/fuel/oil,
 		/datum/reagent/ammonia,
-		/datum/reagent/ash,
+		/datum/reagent/ash
 	)
 
 	var/static/list/default_upgrade2_reagents = list(
 		/datum/reagent/acetone,
 		/datum/reagent/phenol,
-		/datum/reagent/diethylamine,
-		/datum/reagent/saltpetre,
+		/datum/reagent/diethylamine
 	)
 
 	var/static/list/default_upgrade3_reagents = list(
 		/datum/reagent/medicine/mine_salve,
-		/datum/reagent/toxin,
+		/datum/reagent/toxin
 	)
 
 	var/static/list/default_emagged_reagents = list(
@@ -130,7 +129,7 @@
 		/datum/reagent/consumable/frostoil,
 		/datum/reagent/toxin/carpotoxin,
 		/datum/reagent/toxin/histamine,
-		/datum/reagent/medicine/morphine,
+		/datum/reagent/medicine/morphine
 	)
 	//NOVA EDIT CHANGE END
 
@@ -176,9 +175,9 @@
 	if(panel_open)
 		. += span_notice("[src]'s maintenance hatch is open!")
 	if(in_range(user, src) || isobserver(user))
-		. += span_notice("The status display reads:\n\
+		. += "<span class='notice'>The status display reads:\n\
 		Recharge rate: <b>[display_power(recharge_amount, convert = FALSE)]</b>.\n\
-		Energy cost: <b>[siunit(power_cost, "J/u", 3)]</b>.")
+		Energy cost: <b>[siunit(power_cost, "J/u", 3)]</b>.</span>"
 	. += span_notice("Use <b>RMB</b> to eject a stored beaker.")
 
 /obj/machinery/chem_dispenser/on_set_is_operational(old_value)
@@ -400,7 +399,7 @@
 		if("save_recording")
 			if(!is_operational)
 				return
-			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", max_length = MAX_NAME_LEN)
+			var/name = tgui_input_text(ui.user, "What do you want to name this recipe?", "Recipe Name", MAX_NAME_LEN)
 			if(!ui.user.can_perform_action(src, ALLOW_SILICON_REACH))
 				return
 			if(saved_recipes[name] && tgui_alert(ui.user, "\"[name]\" already exists, do you want to overwrite it?",, list("Yes", "No")) == "No")
@@ -411,7 +410,7 @@
 					if(!dispensable_reagents.Find(reagent_id))
 						visible_message(span_warning("[src] buzzes."), span_hear("You hear a faint buzz."))
 						to_chat(ui.user, span_warning("[src] cannot find <b>[reagent]</b>!"))
-						playsound(src, 'sound/machines/buzz/buzz-two.ogg', 50, TRUE)
+						playsound(src, 'sound/machines/buzz-two.ogg', 50, TRUE)
 						return
 				saved_recipes[name] = recording_recipe
 				recording_recipe = null

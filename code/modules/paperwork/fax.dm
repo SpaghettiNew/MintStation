@@ -43,9 +43,6 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 		/obj/item/card,
 		/obj/item/folder/biscuit,
 		/obj/item/food/breadslice,
-		/obj/item/food/chapslice,
-		/obj/item/food/cookie,
-		/obj/item/food/grilled_chapslice,
 		/obj/item/food/pizza/flatbread,
 		/obj/item/food/pizzaslice,
 		/obj/item/food/root_flatbread,
@@ -144,7 +141,7 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 		return FALSE
 	if (!(obj_flags & EMAGGED))
 		obj_flags |= EMAGGED
-		playsound(src, 'sound/mobs/non-humanoids/dog/growl2.ogg', 50, FALSE)
+		playsound(src, 'sound/creatures/dog/growl2.ogg', 50, FALSE)
 		balloon_alert(user, "migrated to syndienet 2.0")
 		to_chat(user, span_warning("An image appears on [src] screen for a moment with Ian in the cap of a Syndicate officer."))
 		return TRUE
@@ -170,7 +167,7 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 /obj/machinery/fax/multitool_act(mob/living/user, obj/item/I)
 	if (panel_open)
 		return
-	var/new_fax_name = tgui_input_text(user, "Enter a new name for the fax machine.", "New Fax Name", max_length = 128)
+	var/new_fax_name = tgui_input_text(user, "Enter a new name for the fax machine.", "New Fax Name", , 128)
 	if (!new_fax_name)
 		return ITEM_INTERACT_SUCCESS
 	if (new_fax_name != fax_name)
@@ -369,7 +366,7 @@ GLOBAL_VAR_INIT(nt_fax_department, pick("NT HR Department", "NT Legal Department
 		if (FAX.jammed)
 			do_sparks(5, TRUE, src)
 			balloon_alert(usr, "destination port jammed")
-			playsound(src, 'sound/machines/scanner/scanbuzz.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
+			playsound(src, 'sound/machines/scanbuzz.ogg', 25, TRUE, SHORT_RANGE_SOUND_EXTRARANGE)
 			return FALSE
 		FAX.receive(loaded, fax_name)
 		history_add("Send", FAX.fax_name)

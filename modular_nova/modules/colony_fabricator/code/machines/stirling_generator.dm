@@ -125,7 +125,6 @@
 
 /obj/item/flatpacked_machine/stirling_generator
 	name = "flat-packed stirling generator"
-	desc = /obj/machinery/power/stirling_generator::desc
 	icon = 'modular_nova/modules/colony_fabricator/icons/stirling_generator/packed_machines.dmi'
 	icon_state = "stirling"
 	type_to_deploy = /obj/machinery/power/stirling_generator

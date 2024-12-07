@@ -1,1 +1,0 @@
-/obj/item/gun/ballistic/rifle/boltaction/sporterized/@SUBTYPES : /obj/item/gun/ballistic/rifle/sporterized/@SUBTYPES{@OLD}

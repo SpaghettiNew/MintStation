@@ -373,17 +373,15 @@
 
 /obj/machinery/door/airlock/multi_tile
 	icon = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/glass.dmi'
-	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/overlays.dmi'
+	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/glass_overlays.dmi'
 
 /obj/machinery/door/airlock/multi_tile/glass
 	icon = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/glass.dmi'
+	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/glass_overlays.dmi'
 
 /obj/machinery/door/airlock/multi_tile/metal
 	icon = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/metal.dmi'
-
-/obj/structure/door_assembly/multi_tile
-	icon = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/glass.dmi'
-	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/overlays.dmi'
+	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/multi_tile/metal_overlays.dmi'
 
 //TRAM
 
@@ -391,8 +389,8 @@
 	name = "tram door"
 	icon = 'modularmint/aesthetics/airlock/icons/airlocks/tram/tram.dmi'
 	overlays_file = 'modularmint/aesthetics/airlock/icons/airlocks/tram/tram_overlays.dmi'
-	doorOpen = 'sound/machines/tram/tramopen.ogg'
-	doorClose = 'sound/machines/tram/tramclose.ogg'
+	doorOpen = 'sound/machines/tramopen.ogg'
+	doorClose = 'sound/machines/tramclose.ogg'
 
 /obj/machinery/door/airlock/tram/set_light(l_range, l_power, l_color = NONSENSICAL_VALUE, l_angle, l_dir, l_height, l_on)
 	return

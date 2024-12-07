@@ -24,9 +24,9 @@
 			for(var/obj/item/abductor/gizmo/G in B.contents)
 				console.AddGizmo(G)
 
-/datum/outfit/abductor/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+/datum/outfit/abductor/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
 	. = ..()
-	if(visuals_only)
+	if(visualsOnly)
 		return
 
 	if(!isnull(user.mind))
@@ -50,13 +50,6 @@
 		/obj/item/abductor/silencer = 1
 		)
 
-/datum/outfit/abductor/agent/cardboard
-	name = "Abductor Agent"
-	head = /obj/item/clothing/head/helmet/abductor
-	suit = /obj/item/clothing/suit/armor/abductor/vest
-	l_hand = /obj/item/melee/baton/abductor
-	belt = /obj/item/storage/belt/military/abductor/full
-
 /datum/outfit/abductor/scientist
 	name = "Abductor Scientist"
 
@@ -64,9 +57,9 @@
 		/obj/item/abductor/gizmo = 1
 		)
 
-/datum/outfit/abductor/scientist/post_equip(mob/living/carbon/human/user, visuals_only = FALSE)
+/datum/outfit/abductor/scientist/post_equip(mob/living/carbon/human/user, visualsOnly = FALSE)
 	. = ..()
-	if(!visuals_only && !isnull(user.mind))
+	if(!visualsOnly && !isnull(user.mind))
 		var/obj/item/implant/abductor/beamplant = new /obj/item/implant/abductor(user)
 		beamplant.implant(user)
 

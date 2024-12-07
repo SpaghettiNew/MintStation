@@ -21,7 +21,7 @@
 	sharpness = SHARP_EDGED
 	attack_verb_continuous = "eviscerates"
 	attack_verb_simple = "eviscerate"
-	attack_sound = 'sound/items/weapons/bladeslice.ogg'
+	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attack_vis_effect = ATTACK_EFFECT_SLASH
 	gold_core_spawnable = HOSTILE_SPAWN
 	limb_destroyer = TRUE
@@ -39,13 +39,10 @@
 	var/exenteration_cooldown_duration = 0.5 SECONDS
 	//aoe slash ability
 	var/datum/action/cooldown/mob_cooldown/bot/exenterate
-	var/list/remains = list(/obj/effect/gibspawner/robot)
 
 /mob/living/basic/bot/dedbot/Initialize(mapload)
 	. = ..()
-	if(length(remains))
-		remains = string_list(remains)
-		AddElement(/datum/element/death_drops, remains)
+	AddElement(/datum/element/death_drops, /obj/effect/gibspawner/robot)
 	var/static/list/innate_actions = list(
 	SPIN_SLASH_ABILITY_TYPEPATH = BB_DEDBOT_SLASH,
 	)
@@ -106,7 +103,7 @@
 		return FALSE
 	caster.Shake(1.4, 0.8, 0.3 SECONDS)
 	caster.visible_message(span_danger("[caster] shakes violently!"))
-	playsound(caster, 'sound/items/weapons/drill.ogg', 120 , TRUE)
+	playsound(caster, 'sound/weapons/drill.ogg', 120 , TRUE)
 	slash_em(caster)
 	StartCooldown(cooldown_time)
 

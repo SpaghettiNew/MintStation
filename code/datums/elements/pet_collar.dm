@@ -54,7 +54,7 @@
 /datum/element/wears_collar/proc/on_content_enter(mob/living/source, obj/item/clothing/neck/petcollar/new_collar)
 	SIGNAL_HANDLER
 
-	if(!istype(new_collar) || !new_collar.tagname)
+	if(!istype(new_collar))
 		return
 
 	source.fully_replace_character_name(null, "\proper [new_collar.tagname]")

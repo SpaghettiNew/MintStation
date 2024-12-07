@@ -63,7 +63,7 @@
 	message = "screams!"
 	message_mime = "acts out a scream!"
 	emote_type = EMOTE_AUDIBLE | EMOTE_VISIBLE
-	specific_emote_audio_cooldown = 10 SECONDS
+	only_forced_audio = TRUE
 	vary = TRUE
 	sound_wall_ignore = TRUE //NOVA EDIT ADDITION
 
@@ -106,7 +106,7 @@
 	message = "salutes."
 	message_param = "salutes to %t."
 	hands_use_check = TRUE
-	sound = 'sound/mobs/humanoids/human/salute/salute.ogg'
+	sound = 'sound/misc/salute.ogg'
 
 /datum/emote/living/carbon/human/shrug
 	key = "shrug"

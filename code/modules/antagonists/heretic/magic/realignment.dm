@@ -7,7 +7,7 @@
 	overlay_icon_state = "bg_heretic_border"
 	button_icon = 'icons/hud/implants.dmi'
 	button_icon_state = "adrenal"
-	// sound = 'sound/effects/magic/whistlereset.ogg' I have no idea why this was commented out
+	// sound = 'sound/magic/whistlereset.ogg'
 
 	school = SCHOOL_FORBIDDEN
 	cooldown_time = 6 SECONDS
@@ -54,14 +54,12 @@
 	alert_type = /atom/movable/screen/alert/status_effect/realignment
 	tick_interval = 0.2 SECONDS
 	show_duration = TRUE
-	///Traits to add/remove
-	var/list/realignment_traits = list(TRAIT_BATON_RESISTANCE, TRAIT_PACIFISM)
 
 /datum/status_effect/realignment/get_examine_text()
 	return span_notice("[owner.p_Theyre()] glowing a soft white.")
 
 /datum/status_effect/realignment/on_apply()
-	owner.add_traits(realignment_traits, id)
+	ADD_TRAIT(owner, TRAIT_PACIFISM, id)
 	owner.add_filter(id, 2, list("type" = "outline", "color" = "#d6e3e7", "size" = 2))
 	var/filter = owner.get_filter(id)
 	animate(filter, alpha = 127, time = 1 SECONDS, loop = -1)
@@ -69,12 +67,12 @@
 	return TRUE
 
 /datum/status_effect/realignment/on_remove()
-	owner.remove_traits(realignment_traits, id)
+	REMOVE_TRAIT(owner, TRAIT_PACIFISM, id)
 	owner.remove_filter(id)
 
 /datum/status_effect/realignment/tick(seconds_between_ticks)
-	owner.adjustStaminaLoss(-10)
-	owner.AdjustAllImmobility(-1 SECONDS)
+	owner.adjustStaminaLoss(-5)
+	owner.AdjustAllImmobility(-0.5 SECONDS)
 
 /atom/movable/screen/alert/status_effect/realignment
 	name = "Realignment"

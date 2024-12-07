@@ -29,7 +29,6 @@
 	heat_protection = CHEST|GROIN
 	cold_protection = CHEST|GROIN
 	item_flags = IMMUTABLE_SLOW
-	drop_sound = null
 
 /obj/item/clothing/gloves/mod
 	name = "MOD gauntlets"
@@ -43,8 +42,6 @@
 	heat_protection = HANDS|ARMS
 	cold_protection = HANDS|ARMS
 	item_flags = IMMUTABLE_SLOW
-	equip_sound = null
-	drop_sound = null
 
 /obj/item/clothing/shoes/mod
 	name = "MOD boots"
@@ -59,4 +56,3 @@
 	cold_protection = FEET|LEGS
 	item_flags = IGNORE_DIGITIGRADE | IMMUTABLE_SLOW
 	can_be_tied = FALSE
-	equip_sound = null

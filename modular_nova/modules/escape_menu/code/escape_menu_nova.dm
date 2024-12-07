@@ -6,7 +6,7 @@
 			/* hud_owner = */ src,
 			src,
 			"OPFOR",
-			/* offset = */ 5,
+			/* offset = */ 3,
 			CALLBACK(src, PROC_REF(home_opfor)),
 		)
 	)
@@ -17,7 +17,7 @@
 			/* hud_owner = */ src,
 			src,
 			"Ghost",
-			/* offset = */ 6,
+			/* offset = */ 4,
 			CALLBACK(src, PROC_REF(home_ghost)),
 		)
 	)
@@ -28,7 +28,7 @@
 			/* hud_owner = */ src,
 			src,
 			"Respawn",
-			/* offset = */ 7,
+			/* offset = */ 5,
 			CALLBACK(src, PROC_REF(home_respawn)),
 		)
 	)

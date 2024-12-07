@@ -25,10 +25,6 @@
 	artifact_inside = null
 	return ..()
 
-/obj/item/boulder/artifact/update_icon_state()
-	. = ..()
-	icon_state = "boulder_artifact" // Hardset to artifact sprites for consistency
-
 ///Boulders usually spawned in lavaland labour camp area
 /obj/item/boulder/gulag
 	name = "low-quality boulder"
@@ -38,7 +34,7 @@
 	. = ..()
 
 	/// Static list of all minerals to populate gulag boulders with.
-	var/static/list/gulag_minerals = list(
+	var/list/static/gulag_minerals = list(
 		/datum/material/diamond = 1,
 		/datum/material/gold = 8,
 		/datum/material/iron = 95,
@@ -59,7 +55,7 @@
 	. = ..()
 
 	/// Static list of all minerals to populate gulag boulders with, but with bluespace added where safe.
-	var/static/list/expanded_gulag_minerals = list(
+	var/list/static/expanded_gulag_minerals = list(
 		/datum/material/bluespace = 1,
 		/datum/material/diamond = 1,
 		/datum/material/gold = 8,

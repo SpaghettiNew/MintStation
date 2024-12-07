@@ -7,11 +7,11 @@
 
 
 /datum/preference/choiced/digitigrade_legs/create_default_value()
-	return NORMAL_LEGS
+	return "Normal Legs"
 
 
 /datum/preference/choiced/digitigrade_legs/init_possible_values()
-	return list(NORMAL_LEGS, DIGITIGRADE_LEGS)
+	return assoc_to_keys_features(SSaccessories.sprite_accessories["legs"])
 
 /datum/preference/choiced/digitigrade_legs/is_accessible(datum/preferences/preferences)
 	return ..() && is_usable(preferences)

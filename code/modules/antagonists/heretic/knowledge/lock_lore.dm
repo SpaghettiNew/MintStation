@@ -76,12 +76,10 @@
 	if(ismecha(target))
 		var/obj/vehicle/sealed/mecha/mecha = target
 		mecha.dna_lock = null
-		mecha.mecha_flags &= ~ID_LOCK_ON
 		for(var/mob/living/occupant as anything in mecha.occupants)
 			if(isAI(occupant))
 				continue
 			mecha.mob_exit(occupant, randomstep = TRUE)
-			occupant.Paralyze(5 SECONDS)
 	else if(istype(target,/obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/door = target
 		door.unbolt()
@@ -92,7 +90,7 @@
 
 	var/turf/target_turf = get_turf(target)
 	SEND_SIGNAL(target_turf, COMSIG_ATOM_MAGICALLY_UNLOCKED, src, source)
-	playsound(target, 'sound/effects/magic/hereticknock.ogg', 100, TRUE, -1)
+	playsound(target, 'sound/magic/hereticknock.ogg', 100, TRUE, -1)
 
 	return COMPONENT_USE_HAND
 
@@ -242,7 +240,7 @@
 	priority_announce(
 		text = "Delta-class dimensional anomaly detec[generate_heretic_text()] Reality rended, torn. Gates open, doors open, [user.real_name] has ascended! Fear the tide! [generate_heretic_text()]",
 		title = "[generate_heretic_text()]",
-		sound = 'sound/music/antag/heretic/ascend_knock.ogg',
+		sound = 'sound/ambience/antag/heretic/ascend_knock.ogg',
 		color_override = "pink",
 	)
 
