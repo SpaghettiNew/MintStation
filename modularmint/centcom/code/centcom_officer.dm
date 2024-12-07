@@ -20,7 +20,7 @@
 		/datum/job_department/central_command
 	)
 
-	outfit = /datum/outfit/centcom/naval/lieutenant
+	outfit = /datum/outfit/centcom/mint_centcom/officer
 
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_CMD
@@ -45,14 +45,15 @@
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
 
-/datum/outfit/job/centcom_officer //MINT EDIT: START (possibly broken)
+/datum/outfit/job/mint_centcom/officer //MINT EDIT: START
 	name = "Central Command Officer"
-	jobtype = /datum/job/centcom_officer
-	backpack_contents = list(
-		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
-		/obj/item/clipboard = 1,
-		/obj/item/folder = 1
-	) //MINT EDIT: END
+	jobtype = /datum/job/mint_centcom/officer
+	id_trim = /datum/id_trim/centcom/official
+	head = /obj/item/clothing/head/hats/centcom_cap
+	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
+	uniform = /obj/item/clothing/under/rank/centcom/nova/naval/commander
+	gloves = /obj/item/clothing/gloves/combat
+	//MINT EDIT: END
 
 
 /*

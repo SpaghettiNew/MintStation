@@ -7021,7 +7021,7 @@
 	color = "#596479";
 	dir = 1
 	},
-/obj/effect/landmark/start/centcom_admiral,
+/obj/effect/landmark/start/mint_centcom/admiral,
 /turf/open/floor/glass/reinforced,
 /area/centcom/central_command_areas/admin)
 "EK" = (
