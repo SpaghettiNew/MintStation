@@ -46,15 +46,15 @@
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
 
-	/datum/outfit/job/centcom_admiral //MINT EDIT: START (possibly broken)
+/datum/outfit/job/centcom_admiral //MINT EDIT: START (possibly broken)
 	name = "Central Command Admiral"
 	jobtype = /datum/job/centcom_admiral
 	backpack_contents = list(
-		/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
-		/obj/item/clipboard = 1,
-		/obj/item/folder = 1,
-		/obj/item/gun/ballistic/revolver/ocelot = 1 ,
-	) //MINT EDIT: END
+	/obj/item/modular_computer/pda/nanotrasen_consultant = 1,
+	/obj/item/clipboard = 1,
+	/obj/item/folder = 1,
+	/obj/item/gun/ballistic/revolver/ocelot = 1
+) //MINT EDIT: END
 
 /*
 /obj/effect/landmark/start/centcom_admiral

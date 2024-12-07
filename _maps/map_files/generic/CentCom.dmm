@@ -4278,6 +4278,11 @@
 /obj/effect/turf_decal/delivery,
 /turf/open/floor/iron,
 /area/centcom/central_command_areas/evacuation)
+"sX" = (
+/obj/machinery/telecomms/relay/preset/station,
+/obj/structure/cable,
+/turf/open/floor/circuit/telecomms/mainframe,
+/area/centcom/central_command_areas/admin)
 "sY" = (
 /obj/machinery/door/airlock/centcom{
 	name = "CentCom Supplypod Loading"
@@ -7499,6 +7504,9 @@
 /obj/effect/turf_decal/tile/neutral/fourcorners,
 /turf/open/floor/iron/dark,
 /area/centcom/central_command_areas/admin)
+"HA" = (
+/turf/open/space/basic,
+/area/centcom/central_command_areas/fore)
 "HE" = (
 /obj/structure/flora/bush/lavendergrass/style_random,
 /obj/structure/flora/bush/fullgrass/style_random,
@@ -50357,7 +50365,7 @@ aa
 aa
 On
 cB
-tW
+sX
 tW
 Ux
 On
@@ -55237,7 +55245,7 @@ aa
 aa
 aa
 aa
-Vx
+HA
 Vx
 Vx
 mO
