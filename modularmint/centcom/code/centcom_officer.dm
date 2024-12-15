@@ -1,3 +1,6 @@
+/datum/outfit/centcom/mint_centcom/officer
+/datum/job/mint_centcom/officer
+
 /datum/job/centcom_officer
 	title = JOB_CCNT_OFFICER
 	description = "Elite NanoTrasen officers that work in Central Command. They should work with requests from the station and provide support if necessary."
