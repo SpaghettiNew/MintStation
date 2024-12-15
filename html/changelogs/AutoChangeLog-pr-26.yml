@@ -1,0 +1,5 @@
+author: "FeenieRU"
+delete-after: True
+changes:
+  - bugfix: "selected button color"
+  - bugfix: "Runechat looks better if you use the russian language"
