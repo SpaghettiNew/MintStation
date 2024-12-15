@@ -1,0 +1,4 @@
+author: "Phoenix4O4"
+delete-after: True
+changes:
+  - rscadd: "Improved jukebox interface, with queue playback mode now set as the default."
