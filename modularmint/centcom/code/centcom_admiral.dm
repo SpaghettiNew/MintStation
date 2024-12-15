@@ -83,6 +83,7 @@
 		if (success)
 			to_chat(human_spawned, span_boldnotice("You have been trained in Close Quarters Combat!"))
 //MINT EDIT: END
+*/
 /*
 /obj/effect/landmark/start/mint_centcom/admiral
 	name = "CentCom Admiral"
