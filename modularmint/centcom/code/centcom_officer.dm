@@ -23,7 +23,7 @@
 		/datum/job_department/central_command
 	)
 
-	outfit = /datum/outfit/centcom/mint_centcom/officer
+	outfit = /datum/outfit/job/mint_centcom/centcom_officer
 
 	paycheck = PAYCHECK_COMMAND
 	paycheck_department = ACCOUNT_CMD
@@ -48,9 +48,9 @@
 	job_flags = STATION_JOB_FLAGS | JOB_BOLD_SELECT_TEXT | JOB_CANNOT_OPEN_SLOTS
 
 
-/datum/outfit/job/mint_centcom/officer //MINT EDIT: START
+/datum/outfit/job/mint_centcom/centcom_officer //MINT EDIT: START
 	name = "Central Command Officer"
-	jobtype = /datum/job/mint_centcom/officer
+	jobtype = /datum/job/mint_centcom/centcom_officer
 	id_trim = /datum/id_trim/centcom/official
 	head = /obj/item/clothing/head/hats/centcom_cap
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval

@@ -85,8 +85,8 @@ var/datum/martial_art/cqc/admiral_cqc
 			to_chat(human_spawned, span_boldnotice("You are trained in Close Quarters Combat!"))
 
 //MINT EDIT: END
-
-/* /obj/effect/landmark/start/mint_centcom/admiral
+/*
+/obj/effect/landmark/start/mint_centcom/admiral
 	name = "CentCom Admiral"
 	icon_state = "admiral"
 	icon = 'modularmint/centcom/icons/landmarks.dmi'
