@@ -123,11 +123,3 @@ export const sound_ai_vox: FeatureToggle = {
     'When enabled, hear vocal AI announcements (also known as "VOX").',
   component: CheckboxInput,
 };
-
-export const sound_ai_vox: FeatureToggle = {
-  name: 'Enable AI VOX announcements',
-  category: 'SOUND',
-  description:
-    'When enabled, hear vocal AI announcements (also known as "VOX").',
-  component: CheckboxInput,
-};

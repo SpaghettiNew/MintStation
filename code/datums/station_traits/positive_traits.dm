@@ -308,8 +308,8 @@
 		/datum/job/telecomms_specialist = /obj/item/organ/ears/cybernetic/xray,
 		// NOVA EDIT END
 		// MINT EDIT ADDITION START
-		/datum/job/centcom_admiral = /obj/item/organ/internal/heart/cybernetic/tier3,
-		/datum/job/centcom_officer = /obj/item/organ/internal/heart/cybernetic/tier3,
+		/datum/job/centcom_admiral = /obj/item/organ/heart/cybernetic/tier3,
+		/datum/job/centcom_officer = /obj/item/organ/heart/cybernetic/tier3,
 		// MINT EDIT END
 	)
 
