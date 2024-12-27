@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-$background: #131313;
-$button: #1f1f1f;
-$lightMode: #ffffff;
-$lightBorder: #bbbbbb;
-$lightHover: #eaeaea;
+$background: hsl(0, 0%, 7.5%);
+$button: hsl(0, 0%, 12.2%);
+$lightMode: hsl(0, 0%, 100%);
+$lightBorder: hsl(0, 0%, 73.3%);
+$lightHover: hsl(0, 0%, 91.8%);
 
 $_channel_map: (
   'Admin': #ffbbff,
