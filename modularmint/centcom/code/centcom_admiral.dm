@@ -58,7 +58,7 @@ var/datum/martial_art/cqc/admiral_cqc
 /datum/outfit/job/mint_centcom/admiral //MINT EDIT: START
 	name = "Central Command Admiral"
 	jobtype = /datum/job/mint_centcom/admiral
-	id_trim = /datum/id_trim/centcom/official
+	id_trim = /datum/id_trim/centcom/admiral
 	head = /obj/item/clothing/head/hats/centcom_cap
 	neck = /obj/item/clothing/neck/pauldron/commander
 	suit = /obj/item/clothing/suit/armor/vest/capcarapace/naval
