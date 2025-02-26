@@ -42,7 +42,7 @@ jobs:
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.1
         with:
           target_sync_branch: upstream-updates
-          target_repo_token: ${{ secrets.GITHUB_TOKEN }}
+          target_repo_token: ${{ secrets.TOKEN }}
           upstream_sync_branch: master
           upstream_sync_repo: NovaSector/NovaSector
           test_mode: ${{ inputs.sync_test_mode }}
@@ -56,7 +56,7 @@ jobs:
           destination_branch: "master"
           pr_title: "[UPSTREAM UPDATE] ${{ format('{0:dd}.{0:MM}.{0:yyyy}', github.event.repository.pushed_at) }}"
           pr_body: "Upstream update ${{ format('{0:dd}.{0:MM}.{0:yyyy}', github.event.repository.pushed_at) }}"
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.TOKEN }}
 
       # Step 5: Output results
       - name: New commits found
