@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Fetch all history for all branches
-          persist-credentials: false
+          token: ${{ secrets.TOKEN }}  # Use GITHUB_TOKEN for authentication
 
       # Step 2: Configure git user as github-actions[bot]
       - name: Setup Git
@@ -32,10 +32,16 @@ jobs:
       # Step 3: Make sure upstream-updates branch exists and is up to date with master
       - name: Sync upstream-updates with master
         run: |
+          # Configure git to use GITHUB_TOKEN for authentication
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+
           # Create or reset upstream-updates branch to match master
           git checkout master
           git checkout -B upstream-updates
           git push -f origin upstream-updates
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+
       # Step 4: Sync with upstream NovaSector/NovaSector
       - name: Sync upstream changes
         id: sync
