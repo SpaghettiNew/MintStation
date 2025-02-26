@@ -32,15 +32,15 @@ jobs:
       # Step 3: Make sure upstream-updates branch exists and is up to date with master
       - name: Sync upstream-updates with master
         run: |
-          # Configure git to use MINT_TOKEN for authentication
-          git remote set-url origin https://x-access-token:${MINT_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          # Configure git to use GITHUB_TOKEN for authentication
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
 
           # Create or reset upstream-updates branch to match master
           git checkout master
           git checkout -B upstream-updates
           git push -f origin upstream-updates
         env:
-          MINT_TOKEN: ${{ secrets.MINT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.MINT_TOKEN }}
 
       # Step 4: Sync with upstream NovaSector/NovaSector
       - name: Sync upstream changes
@@ -62,7 +62,7 @@ jobs:
           destination_branch: "master"
           pr_title: "[UPSTREAM UPDATE] ${{ format('{0:dd}.{0:MM}.{0:yyyy}', github.event.repository.pushed_at) }}"
           pr_body: "Upstream update ${{ format('{0:dd}.{0:MM}.{0:yyyy}', github.event.repository.pushed_at) }}"
-          MINT_TOKEN: ${{ secrets.MINT_TOKEN }}
+          github_token: ${{ secrets.MINT_TOKEN }}
 
       # Step 5: Output results
       - name: New commits found
