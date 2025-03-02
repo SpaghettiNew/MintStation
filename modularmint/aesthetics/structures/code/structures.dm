@@ -1,5 +1,7 @@
+/*
 /obj/structure/girder
 	icon = 'modularmint/aesthetics/structures/icons/structures.dmi'
+*/
 
 /obj/structure/grille
 	icon = 'modularmint/aesthetics/structures/icons/structures.dmi'
