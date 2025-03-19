@@ -8940,4 +8940,12 @@
 #include "modularmint\modules\admin\preferences\player_panel.dm"
 #include "modularmint\modules\jukebox\dance_machine.dm"
 #include "modularmint\modules\jukebox\jukebox.dm"
+#include "modularmint\modules\psyonics\code\_psyonics.dm"
+#include "modularmint\modules\psyonics\code\_quirk.dm"
+#include "modularmint\modules\psyonics\code\coersion.dm"
+#include "modularmint\modules\psyonics\code\cyberimp.dm"
+#include "modularmint\modules\psyonics\code\documents.dm"
+#include "modularmint\modules\psyonics\code\energistics.dm"
+#include "modularmint\modules\psyonics\code\psychokinesis.dm"
+#include "modularmint\modules\psyonics\code\redaction.dm"
 // END_INCLUDE
