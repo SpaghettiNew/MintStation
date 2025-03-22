@@ -1,0 +1,5 @@
+author: "FeenieRU"
+delete-after: True
+changes:
+  - rscadd: "Delta Armories is available in imports."
+  - rscadd: "More new guns in cargo."
